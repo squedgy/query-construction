@@ -46,13 +46,13 @@ public class IndividualWhereClause extends WhereClause {
         String values;
 
         if(constants.size() > 1 || operator.equals("in")) {
-            values = "(" + String.join(",", constants) + ") ";
+            values = "(" + String.join(",", constants) + ")";
         } else if (constants.size() == 1) {
             values = constants.get(0);
         } else {
             throw new RuntimeException("Constants didn't exist: " + constants);
         }
-        String format = "%s %s %s ";
+        String format = "%s %s %s";
         return String.format(format, column, operator, values);
     }
 

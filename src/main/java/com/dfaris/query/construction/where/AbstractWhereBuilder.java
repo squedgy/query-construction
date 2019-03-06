@@ -1,9 +1,6 @@
 package com.dfaris.query.construction.where;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.dfaris.query.construction.ValueConverters;
@@ -18,6 +15,7 @@ public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn, StartParen
 
     AbstractWhereBuilder(Parent parent) {
         this.parent = parent;
+        this.constants = new LinkedList<>();
     }
 
     public Parent getParent() { return parent; }

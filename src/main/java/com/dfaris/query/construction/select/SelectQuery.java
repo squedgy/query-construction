@@ -28,17 +28,18 @@ public class SelectQuery extends Query {
     @Override
     public String toString() {
         StringBuilder query = new StringBuilder("SELECT ");
-        query.append(columns[0]);
-        for(int i = 1; i < columns.length; i++){
+        for(int i = 0; i < columns.length-1; i++){
             query.append(columns[i]).append(", ");
         }
-        query.append(' ')
+        query.append(columns[columns.length-1])
+                .append(' ')
                 .append(from.getClauseStarter())
                 .append(from.toString());
 
         where.ifPresent(w -> {
             query.append(w.getClauseStarter())
-                    .append(w.toString());
+                    .append(w.toString())
+                    .append(' ');
         });
 
         return query.toString();

@@ -7,28 +7,18 @@ import java.util.List;
 public class ParenGroup extends WhereClause{
 
     private String followedBy;
-    private List<WhereClause> clauses;
+    private WhereClause clause;
 
-    ParenGroup(List<WhereClause> clauses, String followedBy) {
+    ParenGroup(WhereClause clause, String followedBy) {
         this.followedBy = followedBy;
-        this.clauses = clauses;
-    }
-
-    ParenGroup(List<WhereClause> clauses) {
-        this(clauses, null);
-    }
-
-    ParenGroup(WhereClause... clauses) {
-        this(new LinkedList<>());
-        this.clauses.addAll(Arrays.asList(clauses));
+        this.clause = clause;
     }
 
     String getFollowedBy() { return followedBy; }
-    List<WhereClause>  getClauses() { return clauses; }
-    void addClause(WhereClause clause) { clauses.add(clause); }
+    WhereClause  getClause() { return clause; }
 
     @Override
     public String toString() {
-        return '(' + clauses.toString() + ')';
+        return '(' + clause.toString() + ")" + (followedBy != null ? " " + followedBy : "");
     }
 }

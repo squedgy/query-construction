@@ -1,12 +1,9 @@
 package com.dfaris.query.construction;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.*;
 
 import com.dfaris.query.construction.Clause.ClauseType;
 import static com.dfaris.query.construction.Clause.ClauseType.*;
-import com.sun.javafx.collections.ImmutableObservableList;
 
 public abstract class Query {
 
@@ -65,8 +62,8 @@ public abstract class Query {
             this.clauseOrder.addAll(Arrays.asList(clauseOrder));
         }
 
-        public Collection<ClauseOrder> clauseOrder(){
-            return new ImmutableObservableList<>(clauseOrder.toArray(new ClauseOrder[0]));
+        public ClauseOrder[] clauseOrder(){
+            return clauseOrder.toArray(new ClauseOrder[0]);
         }
     }
 

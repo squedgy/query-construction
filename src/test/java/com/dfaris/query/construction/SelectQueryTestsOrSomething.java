@@ -34,22 +34,48 @@ public class SelectQueryTestsOrSomething {
                 .from("tables")
                     .setFrom()
                 .where()
-                    .column("some")
-                    .equalTo(99)
-                    .and()
-                    .column("stuff")
-                    .in(99, 89, 79, 9)
+                    .startParenthesizedGroup()
+                        .column("some")
+                        .equalTo(99)
+                        .and()
+                        .column("stuff")
+                        .in(99, 89, 79, 9)
                     .endParenthesizedGroupOr()
                     .startParenthesizedGroup()
+                        .column("man")
+                        .greaterThan(55)
+                        .and()
+                        .column("man")
+                        .lessThan(65)
+                    .endParenthesizedGroup()
+                    .build()
+                .build();
+
+        Assert.assertEquals("SELECT some, stuff, man FROM tables tables WHERE (some = 99 AND stuff in (99,89,79,9)) OR (man > 55 AND man < 65) ", query.toString());
+    }
+
+    @Test
+    public void mixedParenthesis() {
+        SelectQuery query = select("some", "stuff", "man")
+                .from("tables")
+                    .setFrom()
+                .where()
+                    .startParenthesizedGroup()
+                        .column("some")
+                        .equalTo(99)
+                        .and()
+                        .column("stuff")
+                        .in(99, 89, 79, 9)
+                    .endParenthesizedGroupOr()
                     .column("man")
                     .greaterThan(55)
                     .and()
                     .column("man")
                     .lessThan(65)
-                    .endParenthesizedGroup()
+                    .build()
                 .build();
 
-        Assert.assertEquals("SELECT some, stuff, man FROM tables tables WHERE (some = 99 AND stuff in (99,89,79,9) ) OR (man > 55 AND man < 65 ) ", query.toString());
+        Assert.assertEquals("SELECT some, stuff, man FROM tables tables WHERE (some = 99 AND stuff in (99,89,79,9)) OR man > 55 AND man < 65 ", query.toString());
     }
 
 }

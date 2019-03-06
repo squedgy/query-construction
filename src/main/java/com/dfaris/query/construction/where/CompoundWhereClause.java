@@ -7,7 +7,7 @@ public class CompoundWhereClause extends WhereClause {
 
     CompoundWhereClause(WhereClause a, String andOr, WhereClause b) {
         if(!andOr.matches("and|or")){
-            throw new IllegalArgumentException("andOr must be either \"and\" OR \"or\" exactly");
+            throw new IllegalArgumentException("andOr must be either \"and\" OR \"or\" exactly. found: \"" + andOr + "\"");
         }
         this.andOr = andOr;
         this.a = a;
@@ -20,7 +20,7 @@ public class CompoundWhereClause extends WhereClause {
 
     @Override
     public String toString() {
-        return String.format("%s%s %s", a, andOr.toUpperCase(), b);
+        return String.format("%s %s %s", a, andOr.toUpperCase(), b);
     }
 
 }
