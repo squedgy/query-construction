@@ -8,7 +8,7 @@ public class RightJoin extends InnerJoin {
 
     @Override
     public String toString() {
-        return String.format("RIGHT JOIN %s %s ON %s.%s = %s.%s ",
+        return String.format("RIGHT JOIN %s %s ON %s.%s = %s.%s)",
                              joinTable,
                              joinTableAlias,
                              joinTableAlias,

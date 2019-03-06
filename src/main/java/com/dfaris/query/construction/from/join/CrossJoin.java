@@ -10,6 +10,6 @@ public class CrossJoin extends JoinClause {
 
     @Override
     public String toString() {
-        return String.format("CROSS JOIN %s ", table);
+        return String.format("CROSS JOIN %s)", table);
     }
 }

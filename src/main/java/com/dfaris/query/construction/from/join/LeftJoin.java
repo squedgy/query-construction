@@ -9,7 +9,7 @@ public class LeftJoin extends InnerJoin {
 
     @Override
     public String toString() {
-        return String.format("LEFT JOIN %s %s ON %s.%s = %s.%s ",
+        return String.format("LEFT JOIN %s %s ON %s.%s = %s.%s)",
                              joinTable,
                              joinTableAlias,
                              joinTableAlias,

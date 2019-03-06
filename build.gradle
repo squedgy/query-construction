@@ -1,3 +1,4 @@
+import java.util.logging.Level
 
 plugins {
     id 'java-library'
@@ -9,7 +10,57 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
-    implementation 'org.jdbi:jdbi3-core:3.6.0'
-    implementation 'com.opentable.components:otj-pg-embedded:0.13.1'
+    testImplementation group: 'junit', name:'junit', version: '4.12'
+    testImplementation group: 'org.jdbi', name: 'jdbi3-core', version: '3.6.0'
+    testImplementation group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
+    testImplementation group: 'fun.mike', name: 'io-support-alpha', version: '0.0.13'
+    testImplementation group: 'fun.mike', name: 'record-alpha', version: '0.0.38'
+    testImplementation group:'org.slf4j', name: 'slf4j-simple', version: '1.7.26'
+
+    implementation group: 'com.opentable.components', name: 'otj-pg-embedded', version: '0.13.1'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
 }
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
+logging.captureStandardError(LogLevel.ERROR)
+logging.captureStandardOutput(LogLevel.ERROR)
+
+def output = new PipedOutputStream() {
+
+}
+
+task initTestDb {
+    doLast {
+        exec {
+            logger.info('creating db')
+            commandLine 'createdb', '-e', 'test-db'
+        }
+        exec {
+            logger.info('creating/populating db')
+            commandLine 'psql', '-f', 'sql-scripts/create.sql', 'test-db'
+        }
+    }
+}
+
+//tasks.create('initTestDb', Exec) {
+//    logger.info('creating database')
+//    commandLine 'createdb', '-e', 'test-db'
+//}
+
+tasks.create('outputDbInfo', Exec) {
+    commandLine 'psql', '-c', '\\dt', 'test-db'
+}
+
+tasks.create('postTests', Exec) {
+    logger.info('dropping database')
+    commandLine 'dropdb', '-e', 'test-db'
+}
+
+tasks.test.dependsOn(tasks.getByName('outputDbInfo'))
+tasks.outputDbInfo.dependsOn("initTestDb")
+tasks.test.finalizedBy(tasks.getByName('postTests'))

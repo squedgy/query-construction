@@ -119,9 +119,20 @@ public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn, StartParen
         return refe;
     }
 
-    public This values(Object... constants) {
-        values(Arrays.asList(constants));
+    public This isTrue() {
+        this.operator = "<>";
+        this.constants = Collections.singletonList("0");
         return refe;
+    }
+
+    public This isFalse() {
+        this.operator = "=";
+        this.constants = Collections.singletonList("0");
+        return refe;
+    }
+
+    public This values(Object... constants) {
+        return values(Arrays.asList(constants));
     }
 
     public This values(Collection<?> constants) {

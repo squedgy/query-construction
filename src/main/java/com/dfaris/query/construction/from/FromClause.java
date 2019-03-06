@@ -32,10 +32,13 @@ public class FromClause extends Clause {
     @Override
     public String toString() {
         StringBuilder joinBuilder = new StringBuilder();
+        StringBuilder format = new StringBuilder();
         for(JoinClause join: joins) {
-            joinBuilder.append(join.toString());
+            format.append('(');
+            joinBuilder.append(join.toString()).append(' ');
         }
-        return String.format("%s %s %s",
+        format.append("%s %s %s");
+        return String.format(format.toString(),
                              table,
                              alias,
                              joinBuilder);

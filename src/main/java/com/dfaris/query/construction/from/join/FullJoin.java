@@ -8,7 +8,7 @@ public class FullJoin extends InnerJoin {
 
     @Override
     public String toString() {
-        return String.format("FULL JOIN %s %s ON %s.%s = %s.%s ",
+        return String.format("FULL JOIN %s %s ON %s.%s = %s.%s)",
                              joinTable,
                              joinTableAlias,
                              joinTableAlias,

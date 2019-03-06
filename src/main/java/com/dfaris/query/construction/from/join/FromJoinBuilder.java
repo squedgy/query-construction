@@ -26,6 +26,9 @@ public class FromJoinBuilder<QueryBuilderType extends FromParent> extends JoinBu
 
     public FromJoinBuilder<QueryBuilderType> table(String name) {
         this.table = name;
+        if(alias == null){
+            this.alias = name;
+        }
         return this;
     }
 

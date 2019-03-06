@@ -44,10 +44,13 @@ public class IndividualWhereClause extends WhereClause {
     @Override
     public String toString(){
         String values;
-
+        String  column = this.column;
         if(constants.size() > 1 || operator.equals("in")) {
             values = "(" + String.join(",", constants) + ")";
         } else if (constants.size() == 1) {
+            if(constants.get(0).equals("0") && operator.matches("=|<>")){
+                column = "CAST(" + column + " AS INTEGER)";
+            }
             values = constants.get(0);
         } else {
             throw new RuntimeException("Constants didn't exist: " + constants);

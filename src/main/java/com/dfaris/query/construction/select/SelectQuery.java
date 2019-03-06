@@ -12,12 +12,15 @@ import com.dfaris.query.construction.where.IndividualWhereClause;
 import com.dfaris.query.construction.where.IndividualWhereClauseBuilder;
 import com.dfaris.query.construction.where.WhereClause;
 import com.dfaris.query.construction.where.WhereParent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SelectQuery extends Query {
 
     private final String[] columns;
     private final FromClause from;
     private final Optional<WhereClause> where;
+    private static final Logger log = LoggerFactory.getLogger(SelectQuery.class);
 
     SelectQuery(String[] columns, FromClause from, Optional<WhereClause> where) {
         this.columns = columns;
@@ -77,7 +80,10 @@ public class SelectQuery extends Query {
 
         @Override
         public SelectQuery build() {
-            return new SelectQuery(columns, from, Optional.of(where));
+            log.debug("columns: " + Arrays.toString(columns));
+            log.debug("from: " + from);
+            log.debug("where: " + where);
+            return new SelectQuery(columns, from, Optional.ofNullable(where));
         }
 
         @Override

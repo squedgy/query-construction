@@ -6,6 +6,7 @@ import java.util.List;
 import com.dfaris.query.construction.from.join.FromJoinBuilder;
 import com.dfaris.query.construction.from.join.JoinClause;
 
+import static com.dfaris.query.construction.from.join.JoinClause.Type.CROSS;
 import static com.dfaris.query.construction.from.join.JoinClause.Type.FULL;
 import static com.dfaris.query.construction.from.join.JoinClause.Type.INNER;
 import static com.dfaris.query.construction.from.join.JoinClause.Type.LEFT;
@@ -21,6 +22,7 @@ public class FromBuilder<QueryBuilderType extends FromParent> {
         this.joins = new LinkedList<>();
         this.table = table;
         this.parent = parent;
+        this.alias = alias;
     }
 
     public FromBuilder(QueryBuilderType parent, String table) {
@@ -59,35 +61,43 @@ public class FromBuilder<QueryBuilderType extends FromParent> {
     }
 
     public FromJoinBuilder<QueryBuilderType> innerJoin() {
-        return new FromJoinBuilder(this, INNER);
+        return new FromJoinBuilder<>(this, INNER);
     }
 
     public FromJoinBuilder<QueryBuilderType> innerJoin(String table) {
-        return new FromJoinBuilder(this, INNER, table);
+        return new FromJoinBuilder<>(this, INNER, table);
     }
 
     public FromJoinBuilder<QueryBuilderType> leftJoin() {
-        return new FromJoinBuilder(this, LEFT);
+        return new FromJoinBuilder<>(this, LEFT);
     }
 
     public FromJoinBuilder<QueryBuilderType> leftJoin(String table) {
-        return new FromJoinBuilder(this, LEFT, table);
+        return new FromJoinBuilder<>(this, LEFT, table);
     }
 
     public FromJoinBuilder<QueryBuilderType> rightJoin() {
-        return new FromJoinBuilder(this, RIGHT);
+        return new FromJoinBuilder<>(this, RIGHT);
     }
 
     public FromJoinBuilder<QueryBuilderType> rightJoin(String table) {
-        return new FromJoinBuilder(this, RIGHT, table);
+        return new FromJoinBuilder<>(this, RIGHT, table);
     }
 
     public FromJoinBuilder<QueryBuilderType> fullJoin() {
-        return new FromJoinBuilder(this, FULL);
+        return new FromJoinBuilder<>(this, FULL);
     }
 
     public FromJoinBuilder<QueryBuilderType> fullJoin(String table) {
-        return new FromJoinBuilder(this, FULL, table);
+        return new FromJoinBuilder<>(this, FULL, table);
+    }
+
+    public FromBuilder<QueryBuilderType> crossJoin(String table){
+        return new FromJoinBuilder<>(this, CROSS, table).on(null, null, null);
+    }
+    
+    public FromBuilder<QueryBuilderType> crossJoin(String table, String alias) {
+        return new FromJoinBuilder<>(this, CROSS, table).alias(alias).on(null, null, null);
     }
 
     public void addJoin(JoinClause join) {

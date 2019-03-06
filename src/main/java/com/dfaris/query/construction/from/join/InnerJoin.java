@@ -18,7 +18,7 @@ public class InnerJoin extends JoinClause {
 
     @Override
     public String toString() {
-        return String.format("JOIN %s %s ON %s.%s = %s.%s ",
+        return String.format("JOIN %s %s ON %s.%s = %s.%s)",
                              joinTable,
                              joinTableAlias,
                              joinTableAlias,

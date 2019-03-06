@@ -1,7 +1,11 @@
 package com.dfaris.query.construction.where;
 
 public class MultiWhereClauseBuilder<Parent extends WhereParent>
-        extends AbstractWhereBuilder<Parent, MultiWhereClauseBuilder<Parent>, MultiWhereClauseBuilder<Parent>, ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>>, Void>
+        extends AbstractWhereBuilder<Parent,
+            MultiWhereClauseBuilder<Parent>,
+            MultiWhereClauseBuilder<Parent>,
+            ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>>,
+            Void>
         implements WhereAppender{
     private String andOr;
     private WhereClause a;
