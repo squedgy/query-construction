@@ -1,0 +1,15 @@
+
+plugins {
+    id 'java-library'
+    id 'idea'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    implementation 'org.jdbi:jdbi3-core:3.6.0'
+    implementation 'com.opentable.components:otj-pg-embedded:0.13.1'
+}
