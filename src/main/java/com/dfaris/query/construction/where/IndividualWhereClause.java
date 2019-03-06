@@ -8,6 +8,9 @@ public class IndividualWhereClause extends WhereClause {
     private List<String> constants;
 
     IndividualWhereClause(String column, String operator, List<String> constants){
+        if(column == null || column.length() == 0 || operator == null || operator.length() == 0 || constants == null || constants.size() == 0){
+            throw new IllegalArgumentException("column, operator, and constants must all be non-null and non-empty!");
+        }
         this.column = column;
         this.operator = operator;
         this.constants = constants;
@@ -21,24 +24,12 @@ public class IndividualWhereClause extends WhereClause {
         return column;
     }
 
-    public void setColumn(String column) {
-        this.column = column;
-    }
-
     public String getOperator() {
         return operator;
     }
 
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
-
     public List<String> getConstants() {
         return constants;
-    }
-
-    public void setConstants(List<String> constants) {
-        this.constants = constants;
     }
 
     @Override

@@ -32,7 +32,7 @@ public class IndividualWhereClauseBuilder<Parent extends WhereParent>
 
     @Override
     public ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>> startParenthesizedGroup() {
-        return new ParenthesizedWhereClauseBuilder<>(new MultiWhereClauseBuilder<>(this, null), this, null, null);
+        return new ParenthesizedWhereClauseBuilder<>(new MultiWhereClauseBuilder<>(this, null));
     }
 
     @Override

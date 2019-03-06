@@ -9,6 +9,11 @@ public class BindableIndividualWhereClauseBuilder<Parent>
 
     BindableIndividualWhereClauseBuilder(Parent parent) {
         super(parent);
+        refe = this;
+    }
+
+    public WhereClause buildClause() {
+        return new IndividualWhereClause(column, operator, constants);
     }
 
     @Override

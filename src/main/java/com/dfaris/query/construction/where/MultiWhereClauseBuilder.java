@@ -1,7 +1,7 @@
 package com.dfaris.query.construction.where;
 
 public class MultiWhereClauseBuilder<Parent extends WhereParent>
-        extends AbstractWhereBuilder<Parent,
+        extends AbstractMultiWhereBuilder<Parent,
             MultiWhereClauseBuilder<Parent>,
             MultiWhereClauseBuilder<Parent>,
             ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>>,
@@ -15,59 +15,27 @@ public class MultiWhereClauseBuilder<Parent extends WhereParent>
         this(builder, builder.buildClause(), andOr);
     }
 
-    MultiWhereClauseBuilder(AbstractWhereBuilder<Parent, ?, ?, ?, ?> builder, WhereClause a, String andOr){
-        super(builder.parent);
+    MultiWhereClauseBuilder(AbstractWhereBuilder<Parent, ?, ?> builder, WhereClause a, String andOr){
+        super(builder.parent, a, andOr);
         this.a = a;
         this.andOr = andOr;
         this.refe = this;
     }
 
     public MultiWhereClauseBuilder<Parent>and(){
-        this.a = buildCompound();
+        this.a = buildClause();
         this.andOr = "and";
         return this.refe;
     }
 
     public MultiWhereClauseBuilder<Parent>or(){
-        this.a = buildCompound();
+        this.a = buildClause();
         this.andOr = "or";
         return this.refe;
     }
 
-    private WhereClause buildIndividual() {
-
-        WhereClause ret;
-        if(column != null && operator != null && constants != null){
-            ret = new IndividualWhereClause(this.column, this.operator, this.constants);
-        } else {
-            ret = null;
-        }
-        column = null;
-        operator = null;
-        constants = null;
-        return ret;
-    }
-
-    private WhereClause buildCompound() {
-        WhereClause ret;
-        if(a != null) {
-            if(andOr != null) {
-                ret = new CompoundWhereClause(a, andOr, buildIndividual());
-            } else if(a instanceof ParenGroup) {
-                ParenGroup group = (ParenGroup) a;
-                ret = new CompoundWhereClause(new ParenGroup(group.getClause(), null), group.getFollowedBy(), buildIndividual());
-            } else {
-                throw new IllegalStateException("AndOr is not set, and a is not a ParenGroup... wut");
-            }
-        } else {
-            ret = buildIndividual();
-        }
-        andOr = null;
-        return ret;
-    }
-
     public ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>> startParenthesizedGroup() {
-        return new ParenthesizedWhereClauseBuilder<>(this, this, null, null);
+        return new ParenthesizedWhereClauseBuilder<>(this);
     }
 
     public Parent endParenthesizedGroup() {
@@ -83,13 +51,10 @@ public class MultiWhereClauseBuilder<Parent extends WhereParent>
     }
 
     public Parent build(){
-        if(a == null){
-            a = buildIndividual();
-        }
-
+        if(a == null) a = buildClause();
         WhereClause finalWhere;
         if(this.andOr != null){
-            finalWhere = buildCompound();
+            finalWhere = buildClause();
         } else {
             finalWhere = a;
         }
@@ -99,14 +64,6 @@ public class MultiWhereClauseBuilder<Parent extends WhereParent>
         }
         parent.setWhere(finalWhere);
         return parent;
-    }
-
-    public static WhereClause compoundFrom(WhereClause a, String andOr, WhereClause b){
-        return new CompoundWhereClause(a, andOr, b);
-    }
-
-    public static WhereClause parenthisizedCompoundFrom(WhereClause a, String andOr, WhereClause b){
-        return new ParenGroup(new CompoundWhereClause(a, andOr, b), null);
     }
 
     @Override

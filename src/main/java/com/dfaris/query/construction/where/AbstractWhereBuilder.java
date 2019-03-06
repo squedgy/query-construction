@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import com.dfaris.query.construction.ValueConverters;
 
-public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn, StartParenReturn, EndParenReturn> {
+public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn> {
 
     protected final Parent parent;
     protected String column;
@@ -25,84 +25,43 @@ public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn, StartParen
         return refe;
     }
 
-    public This withOperator(String operator) {
-        this.operator = operator;
-        return refe;
-    }
-
-    public This in(){
-        this.operator = "in";
-        return refe;
-    }
-
     public This in(Object... values){
         this.operator = "in";
         this.values(values);
         return refe;
     }
 
-    public This greaterThan(){
-        this.operator = ">";
-        return refe;
-    }
-
     public This greaterThan(Object value){
-        greaterThan();
+        this.operator = ">";
         value(value);
-        return refe;
-    }
-
-    public This lessThan(){
-        this.operator = "<";
         return refe;
     }
 
     public This lessThan(Object value){
-        lessThan();
+        this.operator = "<";
         value(value);
         return refe;
     }
-
-    public This greaterThanOrEqualTo(){
-        this.operator = ">=";
-        return refe;
-    }
-
     public This greaterThanOrEqualTo(Object value){
-        greaterThanOrEqualTo();
+        this.operator = ">=";
         value(value);
-        return refe;
-    }
-
-    public This lessThanOrEqualTo(){
-        this.operator = "<=";
         return refe;
     }
 
     public This lessThanOrEqualTo(Object value){
-        lessThanOrEqualTo();
+        this.operator = "<=";
         value(value);
-        return refe;
-    }
-
-    public This equalTo(){
-        this.operator = "=";
         return refe;
     }
 
     public This equalTo(Object value){
-        equalTo();
+        this.operator = "=";
         value(value);
         return refe;
     }
 
-    public This notEqualTo(){
-        this.operator = "<>";
-        return refe;
-    }
-
     public This notEqualTo(Object value){
-        notEqualTo();
+        this.operator = "<>";
         value(value);
         return refe;
     }
@@ -138,18 +97,13 @@ public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn, StartParen
     public This values(Collection<?> constants) {
         this.constants = constants
                 .stream()
-                .map(ValueConverters::getSqlValueOf)
+                .map(this::convertObjectToString)
                 .collect(Collectors.toList());
         return refe;
     }
 
     public This value(Object constant) {
-        this.constants = Collections.singletonList(ValueConverters.getSqlValueOf(constant));
-        return refe;
-    }
-
-    public This value(String constant) {
-        this.constants = Collections.singletonList(constant);
+        this.constants = Collections.singletonList(convertObjectToString(constant));
         return refe;
     }
 
@@ -160,14 +114,21 @@ public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn, StartParen
         return refe;
     }
 
+    protected String convertObjectToString(Object o) {
+        return ValueConverters.getSqlValueOf(o);
+    }
+
     public abstract AndOrReturn and();
     public abstract AndOrReturn or();
 
-    public abstract StartParenReturn startParenthesizedGroup();
-    public abstract Parent endParenthesizedGroup();
-    public abstract EndParenReturn endParenthesizedGroupAnd();
-    public abstract EndParenReturn endParenthesizedGroupOr();
-
     public abstract Parent build();
+
+    protected WhereClause buildClause() {
+        WhereClause ret = new IndividualWhereClause(column, operator, constants);
+        column = null;
+        operator= null;
+        constants = new LinkedList<>();
+        return ret;
+    }
 
 }
