@@ -5,12 +5,13 @@ import java.util.stream.Collectors;
 
 import com.dfaris.query.construction.ValueConverters;
 
-public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn> {
+public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn, ParenReturn> implements WhereParent {
 
     protected final Parent parent;
     protected String column;
     protected String operator;
     protected List<String> constants;
+    protected ParenGroup group;
     protected This refe;
 
     AbstractWhereBuilder(Parent parent) {
@@ -118,10 +119,24 @@ public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn> {
         return ValueConverters.getSqlValueOf(o);
     }
 
+    public abstract ParenReturn startParenthesizedGroup();
+
     public abstract AndOrReturn and();
     public abstract AndOrReturn or();
 
     public abstract Parent build();
+
+    protected boolean canBuildClause(){
+        return column != null && operator != null && constants.size() > 0;
+    }
+
+    @Override
+    public void setWhere(WhereClause clause) {
+        if(clause instanceof ParenGroup){
+            if(group == null) group = (ParenGroup) clause;
+            else group = new ParenGroup(group, (ParenGroup) clause);
+        }
+    }
 
     protected WhereClause buildClause() {
         WhereClause ret = new IndividualWhereClause(column, operator, constants);

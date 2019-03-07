@@ -1,4 +1,13 @@
-import java.util.logging.Level
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+    }
+}
 
 plugins {
     id 'java-library'
@@ -15,13 +24,15 @@ dependencies {
     testImplementation group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
     testImplementation group: 'fun.mike', name: 'io-support-alpha', version: '0.0.13'
     testImplementation group: 'fun.mike', name: 'record-alpha', version: '0.0.38'
-    testImplementation group:'org.slf4j', name: 'slf4j-simple', version: '1.7.26'
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.26'
+
+    compile group: 'com.google.auto.service', name: 'auto-service', version: '1.0-rc4'
 
     implementation group: 'com.opentable.components', name: 'otj-pg-embedded', version: '0.13.1'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
 }
 
-test {
+tasks.test {
     testLogging {
         showStandardStreams = true
     }
@@ -30,11 +41,7 @@ test {
 logging.captureStandardError(LogLevel.ERROR)
 logging.captureStandardOutput(LogLevel.ERROR)
 
-def output = new PipedOutputStream() {
-
-}
-
-task initTestDb {
+tasks.create('initTestDb') {
     doLast {
         exec {
             logger.info('creating db')
@@ -44,16 +51,11 @@ task initTestDb {
             logger.info('creating/populating db')
             commandLine 'psql', '-f', 'sql-scripts/create.sql', 'test-db'
         }
+        exec {
+            logger.info("Database information:")
+            commandLine 'psql', '-c', '\\dt', 'test-db'
+        }
     }
-}
-
-//tasks.create('initTestDb', Exec) {
-//    logger.info('creating database')
-//    commandLine 'createdb', '-e', 'test-db'
-//}
-
-tasks.create('outputDbInfo', Exec) {
-    commandLine 'psql', '-c', '\\dt', 'test-db'
 }
 
 tasks.create('postTests', Exec) {
@@ -61,6 +63,5 @@ tasks.create('postTests', Exec) {
     commandLine 'dropdb', '-e', 'test-db'
 }
 
-tasks.test.dependsOn(tasks.getByName('outputDbInfo'))
-tasks.outputDbInfo.dependsOn("initTestDb")
+tasks.test.dependsOn(tasks.getByName('initTestDb'))
 tasks.test.finalizedBy(tasks.getByName('postTests'))

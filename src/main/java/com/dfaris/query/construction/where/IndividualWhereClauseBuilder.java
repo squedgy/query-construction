@@ -4,21 +4,28 @@ public class IndividualWhereClauseBuilder<Parent extends WhereParent>
         extends AbstractWhereBuilder<Parent,
             IndividualWhereClauseBuilder<Parent>,
             MultiWhereClauseBuilder<Parent>,
-            ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>>,
-            Void>
-        implements WhereParent{
+            ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>>>
+        implements ParenAppender {
 
     private WhereClause clause;
+    private ParenGroup parenGroup;
 
     public IndividualWhereClauseBuilder(Parent parent) {
         super(parent);
         this.refe = this;
     }
 
+    @Override
+    public ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>> startParenthesizedGroup() {
+        return new ParenthesizedWhereClauseBuilder<>(new MultiWhereClauseBuilder<>(this, null, null));
+    }
+
+    @Override
     public MultiWhereClauseBuilder<Parent> and() {
         return new MultiWhereClauseBuilder<>(this, "and");
     }
 
+    @Override
     public MultiWhereClauseBuilder<Parent> or() {
         return new MultiWhereClauseBuilder<>(this, "or");
     }
@@ -31,37 +38,17 @@ public class IndividualWhereClauseBuilder<Parent extends WhereParent>
     }
 
     @Override
-    public ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>> startParenthesizedGroup() {
-        return new ParenthesizedWhereClauseBuilder<>(new MultiWhereClauseBuilder<>(this, null));
-    }
-
-    @Override
-    public Parent endParenthesizedGroup() {
-        return build();
-    }
-
-    @Override
-    public Void endParenthesizedGroupAnd() {
-        return null;
-    }
-
-    @Override
-    public Void endParenthesizedGroupOr() {
-        return null;
-    }
-
     public Parent build() {
-        parent.setWhere(buildClause());
+        WhereClause finalWhere = buildClause();
+        if(parenGroup != null) finalWhere = new CompoundWhereClause(parenGroup, finalWhere);
+        parent.setWhere(finalWhere);
         return parent;
     }
 
-    IndividualWhereClause buildClause() {
-        if(canBuild()) return new IndividualWhereClause(column, operator, constants);
-        else return null;
-    }
-
     @Override
-    public void setWhere(WhereClause clause) {
-
+    public void addWhere(ParenGroup clause) {
+        if(this.parenGroup == null) parenGroup = clause;
+        else this.parenGroup = new ParenGroup(parenGroup, clause);
     }
+
 }

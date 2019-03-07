@@ -1,32 +1,32 @@
 package com.dfaris.query.construction.where;
 
-public class ParenthesizedWhereClauseBuilder<Parent extends WhereAppender>
-        extends AbstractWhereBuilder<Parent,
+public class ParenthesizedWhereClauseBuilder<Parent extends WhereParent>
+        extends AbstractParenthesizedWhereClauseBuilder<Parent,
             ParenthesizedWhereClauseBuilder<Parent>,
             ParenthesizedWhereClauseBuilder<Parent>,
             ParenthesizedWhereClauseBuilder<ParenthesizedWhereClauseBuilder<Parent>>,
-            Parent> implements WhereAppender{
+            Parent> {
 
     private WhereClause a;
     private String andOr;
     private ParenGroup currentGroup;
 
     ParenthesizedWhereClauseBuilder(Parent parent){
-        super(parent);
+        super(parent, null ,null);
         this.refe = this;
     }
 
 
     @Override
     public ParenthesizedWhereClauseBuilder<Parent> and() {
-        this.a = buildNormal();
+        this.a = buildClause();
         this.andOr = "and";
         return this;
     }
 
     @Override
     public ParenthesizedWhereClauseBuilder<Parent> or() {
-        this.a = buildNormal();
+        this.a = buildClause();
         this.andOr = "or";
         return this;
     }
@@ -38,7 +38,7 @@ public class ParenthesizedWhereClauseBuilder<Parent extends WhereAppender>
 
     @Override
     public Parent endParenthesizedGroup() {
-        WhereClause finalClause = buildNormal();
+        WhereClause finalClause = buildClause();
         if(this.currentGroup != null ) {
             if(this.currentGroup.getFollowedBy() != null) finalClause = new CompoundWhereClause(new ParenGroup(currentGroup.getClause(), null), currentGroup.getFollowedBy(), finalClause);
             else if (finalClause == null) finalClause = currentGroup;
@@ -61,27 +61,21 @@ public class ParenthesizedWhereClauseBuilder<Parent extends WhereAppender>
 
     @Override
     public Parent build() {
-        parent.addWhere(currentGroup);
+        parent.setWhere(currentGroup);
         return parent;
-    }
-    @Override
-    public void addWhere(WhereClause clause) {
-        if(clause instanceof ParenGroup) this.currentGroup = (ParenGroup) clause;
-        else throw new IllegalArgumentException("WhereClause must be a ParenGroup for ParenthesizedWhereClauseBuilder!");
     }
 
     private void setParentWhere(String andOr) {
-        ParenGroup clause = new ParenGroup(buildNormal(), andOr);
+        ParenGroup clause = new ParenGroup(buildClause(), andOr);
         if(currentGroup != null){
-            clause = new ParenGroup(new CompoundWhereClause(currentGroup.getClause(), currentGroup.getFollowedBy(), clause.getClause()), andOr);
+            clause = new ParenGroup(currentGroup, clause);
         }
-        parent.addWhere(clause);
+        parent.setWhere(clause);
     }
 
-    private WhereClause buildNormal() {
-        WhereClause ret = buildClause(a, andOr);
-        andOr = null;
-        return ret;
+    @Override
+    public void setWhere(WhereClause clause) {
+        if(clause instanceof ParenGroup) this.currentGroup = (ParenGroup) clause;
+        else throw new IllegalArgumentException("WhereClause must be a ParenGroup for ParenthesizedWhereClauseBuilder!");
     }
-
 }

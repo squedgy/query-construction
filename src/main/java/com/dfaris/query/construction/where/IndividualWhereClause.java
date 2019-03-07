@@ -2,6 +2,9 @@ package com.dfaris.query.construction.where;
 
 import java.util.List;
 
+import com.dfaris.query.construction.preprocess.HasBindableVersion;
+
+@HasBindableVersion
 public class IndividualWhereClause extends WhereClause {
     private String column;
     private String operator;

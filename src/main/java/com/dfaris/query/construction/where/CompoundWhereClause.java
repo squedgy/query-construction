@@ -14,6 +14,12 @@ public class CompoundWhereClause extends WhereClause {
         this.b = b;
     }
 
+    CompoundWhereClause(ParenGroup a, WhereClause b){
+        this.a = new ParenGroup(a.getClause(), null);
+        this.andOr = a.getFollowedBy();
+        this.b = b;
+    }
+
     WhereClause getA(){ return a; }
     WhereClause getB(){ return b; }
     String getAndOr() { return andOr; }
