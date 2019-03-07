@@ -1,16 +1,13 @@
 package com.dfaris.query.construction.where;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class AbstractBindableWhereClauseBuilder<Parent, This, AndOrReturn, StartParenReturn, EndParenReturn>
-        extends AbstractWhereBuilder<Parent, This, AndOrReturn> {
-    AbstractBindableWhereClauseBuilder(Parent parent) {
-        super(parent);
+public abstract class AbstractBindableMultiWhereClauseBuilder<Parent, This, AndOrReturn, StartParenReturn, EndParenReturn>
+    extends AbstractMultiWhereBuilder<Parent, This, AndOrReturn, StartParenReturn, EndParenReturn>{
+
+    AbstractBindableMultiWhereClauseBuilder(Parent parent, WhereClause a, String andOr) {
+        super(parent, a, andOr);
     }
 
     private boolean allString(Object[] values) {

@@ -1,7 +1,5 @@
 package com.dfaris.query.construction.where;
 
-import java.util.List;
-
 public abstract class AbstractMultiWhereBuilder<Parent, This, AndOrReturn, StartParenReturn, EndParenReturn>
     extends AbstractWhereBuilder<Parent, This, AndOrReturn> implements WhereAppender{
 

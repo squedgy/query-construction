@@ -53,14 +53,6 @@ public class ParenthesizedWhereClauseBuilder<Parent extends WhereAppender>
         return parent;
     }
 
-    private void setParentWhere(String andOr) {
-        ParenGroup clause = new ParenGroup(buildNormal(), andOr);
-        if(currentGroup != null){
-            clause = new ParenGroup(new CompoundWhereClause(currentGroup.getClause(), currentGroup.getFollowedBy(), clause.getClause()), andOr);
-        }
-        parent.addWhere(clause);
-    }
-
     @Override
     public Parent endParenthesizedGroupOr() {
         setParentWhere("or");
@@ -76,6 +68,14 @@ public class ParenthesizedWhereClauseBuilder<Parent extends WhereAppender>
     public void addWhere(WhereClause clause) {
         if(clause instanceof ParenGroup) this.currentGroup = (ParenGroup) clause;
         else throw new IllegalArgumentException("WhereClause must be a ParenGroup for ParenthesizedWhereClauseBuilder!");
+    }
+
+    private void setParentWhere(String andOr) {
+        ParenGroup clause = new ParenGroup(buildNormal(), andOr);
+        if(currentGroup != null){
+            clause = new ParenGroup(new CompoundWhereClause(currentGroup.getClause(), currentGroup.getFollowedBy(), clause.getClause()), andOr);
+        }
+        parent.addWhere(clause);
     }
 
     private WhereClause buildNormal() {

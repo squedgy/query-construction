@@ -4,8 +4,8 @@ public class BindableMultiWhereClauseBuilder<Parent extends WhereParent>
         extends AbstractMultiWhereBuilder<Parent,
             BindableMultiWhereClauseBuilder<Parent>,
             BindableMultiWhereClauseBuilder<Parent>,
-        BindableParenthesizedWhereClauseBuilder<BindableMultiWhereClauseBuilder<Parent>>,
-            Void> {
+            BindableParenthesizedWhereClauseBuilder<BindableMultiWhereClauseBuilder<Parent>>,
+            Void> implements WhereAppender{
 
     BindableMultiWhereClauseBuilder(AbstractBindableWhereClauseBuilder<Parent, ?, ?, ?, ?> builder, WhereClause a, String andOr){
         super(builder.parent, a, andOr);
@@ -68,15 +68,15 @@ public class BindableMultiWhereClauseBuilder<Parent extends WhereParent>
 
     @Override
     public void addWhere(WhereClause clause) {
-        if(clause instanceof  ParenGroup){
-            if(a == null) {
+        if (clause instanceof ParenGroup) {
+            if (a == null) {
                 a = clause;
-            } else if(a instanceof ParenGroup) {
+            } else if (a instanceof ParenGroup) {
                 ParenGroup b = (ParenGroup) a;
                 a = new CompoundWhereClause(new ParenGroup(b.getClause(), null), b.getFollowedBy(), clause);
-            } else if(a instanceof  CompoundWhereClause) {
+            } else if (a instanceof CompoundWhereClause) {
                 CompoundWhereClause b = (CompoundWhereClause) a;
-                if(b.getB() instanceof ParenGroup){
+                if (b.getB() instanceof ParenGroup) {
                     ParenGroup bsB = (ParenGroup) b.getB();
                     WhereClause temp = new CompoundWhereClause(b.getA(), b.getAndOr(), bsB.getClause());
                     a = new CompoundWhereClause(temp, bsB.getFollowedBy(), clause);
@@ -85,4 +85,5 @@ public class BindableMultiWhereClauseBuilder<Parent extends WhereParent>
         } else {
             throw new IllegalStateException("Cannot accept a non ParenGroup clause in MultiWhereClauseBuilder");
         }
+    }
 }

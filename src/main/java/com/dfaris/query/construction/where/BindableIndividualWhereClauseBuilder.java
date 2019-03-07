@@ -1,6 +1,6 @@
 package com.dfaris.query.construction.where;
 
-public class BindableIndividualWhereClauseBuilder<Parent>
+public class BindableIndividualWhereClauseBuilder<Parent extends WhereParent>
         extends AbstractBindableWhereClauseBuilder<Parent,
             BindableIndividualWhereClauseBuilder<Parent>,
             BindableMultiWhereClauseBuilder<Parent>,
