@@ -1,0 +1,13 @@
+plugins {
+    id 'java-library'
+    // id 'net.ltgt.errorprone-javacplugin' version '0.2'
+}
+
+dependencies {
+    api group: 'com.google.auto.service', name: 'auto-service', version: '1.0-rc4';
+    api(project(':annotations'))
+
+    api 'com.google.auto.value:auto-value-annotations:1.6'
+    annotationProcessor 'com.google.auto.value:auto-value:1.6'
+
+}

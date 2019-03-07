@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jdbi:jdbi3-core:3.6.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jdbi/jdbi3-core/3.6.0/96a57828b592de0b6f080174dc422254ab1e8fc3/jdbi3-core-3.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jdbi/jdbi3-core/3.6.0/be270aac4b4d143d5789f6a58f4adc6d0caf6d6f/jdbi3-core-3.6.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
