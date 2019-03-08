@@ -2,11 +2,19 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
+      <profile default="true" name="Default" enabled="true">
+        <processorPath>
+          <entry name="$PROJECT_DIR$/processing/src/main/java/com/dfaris/query/construction/processor/BindableProcessor.java" />
+        </processorPath>
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="query-construction.main" target="1.8" />
-      <module name="query-construction.test" target="1.8" />
+      <module name="query-construction.annotations.main" target="1.8" />
+      <module name="query-construction.annotations.test" target="1.8" />
+      <module name="query-construction.library.main" target="1.8" />
+      <module name="query-construction.library.test" target="1.8" />
+      <module name="query-construction.processing.main" target="1.8" />
+      <module name="query-construction.processing.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

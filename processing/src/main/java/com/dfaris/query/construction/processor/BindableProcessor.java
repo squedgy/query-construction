@@ -3,7 +3,6 @@ package com.dfaris.query.construction.processor;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.annotation.Annotation;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,8 +34,8 @@ import com.google.common.collect.Sets;
 public class BindableProcessor extends AbstractProcessor {
 
     private Filer filer;
-    private Messager messager;
     private Types typeUtils;
+    private Messager messager;
     private Elements elementUtils;
 
     @Override
@@ -105,7 +104,7 @@ public class BindableProcessor extends AbstractProcessor {
                 messager.printMessage(Diagnostic.Kind.ERROR, e1.getLocalizedMessage(), e);
             }
         }
-        return false;
+        return true;
     }
 
     protected String getChars(int value) {

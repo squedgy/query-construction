@@ -2,27 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97dee489-4ccf-4702-823a-0c8cae3899f7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/docker-stuffs/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-stuffs/new-container.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-stuffs/perform-cycle.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-stuffs/postgres.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-stuffs/run-container.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_spotbugs_spotbugs_annotations_3_1_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_auto_common_0_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_service_auto_service_1_0_rc4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_opentable_components_otj_pg_embedded_0_13_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_2_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_compress_1_18.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_lang3_3_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_postgresql_postgresql_42_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_jcl_over_slf4j_1_7_25.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_tukaani_xz_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/query-construction.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/query-construction.test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/annotations/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/annotations/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/annotations/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/annotations/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/annotations/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-stuffs/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker-stuffs/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractBindableMultiWhereClauseBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractBindableWhereClauseBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractMultiWhereBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractMultiWhereBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractWhereBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractWhereBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableIndividualWhereClauseBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableMultiWhereClauseBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableParenthesizedWhereClauseBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/CompoundWhereClause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/CompoundWhereClause.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClause.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClauseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClauseBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/MultiWhereClauseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/MultiWhereClauseBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenthesizedWhereClauseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenthesizedWhereClauseBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/WhereAppender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenAppender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/library/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library/sql-scripts/create.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/processing/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/src/main/java/com/dfaris/query/construction/processor/BindableProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/processing/src/main/java/com/dfaris/query/construction/processor/BindableProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/src/main/resources/META-INF/services/javax.annotation.processing.Processor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
+    <ignored path="$PROJECT_DIR$/annotations/.gradle/" />
+    <ignored path="$PROJECT_DIR$/annotations/build/" />
+    <ignored path="$PROJECT_DIR$/annotations/out/" />
+    <ignored path="$PROJECT_DIR$/library/.gradle/" />
+    <ignored path="$PROJECT_DIR$/library/build/" />
+    <ignored path="$PROJECT_DIR$/library/out/" />
+    <ignored path="$PROJECT_DIR$/processing/.gradle/" />
+    <ignored path="$PROJECT_DIR$/processing/build/" />
+    <ignored path="$PROJECT_DIR$/processing/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +92,9 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/processing">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -64,17 +105,25 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="query-construction" type="f1a62948:ProjectNode" />
+                <item name=":processing" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="query-construction" type="f1a62948:ProjectNode" />
+                <item name=":processing" type="2d1252cf:ModuleNode" />
                 <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="query-construction" type="f1a62948:ProjectNode" />
+                <item name=":processing" type="2d1252cf:ModuleNode" />
                 <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
                 <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="query-construction" type="f1a62948:ProjectNode" />
+                <item name=":processing" type="2d1252cf:ModuleNode" />
                 <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
                 <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
                 <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
@@ -82,32 +131,32 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="query-construction" type="f1a62948:ProjectNode" />
+                <item name=":processing" type="2d1252cf:ModuleNode" />
                 <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-                <item name="test" type="396b929e:GradleViewContributor$SourceSetNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="query-construction" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-                <item name="test" type="396b929e:GradleViewContributor$SourceSetNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
                 <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="com.google.auto.service:auto-service:1.0-rc4" type="cfea851d:ExternalSystemViewDefaultContributor$LibraryDependencyDataExternalSystemNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="query-construction" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name=":processing" type="2d1252cf:ModuleNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="com.google.auto.service:auto-service:1.0-rc4" type="cfea851d:ExternalSystemViewDefaultContributor$LibraryDependencyDataExternalSystemNode" />
+                <item name="com.google.auto:auto-common:0.8" type="cfea851d:ExternalSystemViewDefaultContributor$LibraryDependencyDataExternalSystemNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="query-construction" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="query-construction" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
+                <item name=":processing" type="2d1252cf:ModuleNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="com.google.auto.service:auto-service:1.0-rc4" type="cfea851d:ExternalSystemViewDefaultContributor$LibraryDependencyDataExternalSystemNode" />
+                <item name="com.google.auto:auto-common:0.8" type="cfea851d:ExternalSystemViewDefaultContributor$LibraryDependencyDataExternalSystemNode" />
+                <item name="com.google.guava:guava:23.5-jre" type="cfea851d:ExternalSystemViewDefaultContributor$LibraryDependencyDataExternalSystemNode" />
               </path>
             </expand>
             <select />
@@ -116,102 +165,85 @@
       </state>
     </system>
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="query-construction" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractMultiWhereBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClause.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/preprocess/BindableProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5123#5124#0" expanded="true" />
-                <element signature="e#5170#5171#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/select/SelectQuery.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractWhereBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="752">
-              <caret line="129" column="74" selection-start-line="129" selection-start-column="74" selection-end-line="129" selection-end-column="74" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/dfaris/query/construction/SelectQueryTestsOrSomething.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="112" selection-start-line="112" selection-end-line="112" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/MultiWhereClauseBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="33" lean-forward="true" selection-end-line="67" />
+            <state relative-caret-position="225">
+              <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenthesizedWhereClauseBuilder.java">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="75">
+              <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/library/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/settings.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-stuffs/new-container.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="138" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="138" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-stuffs/perform-cycle.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/processing/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/processing/src/main/java/com/dfaris/query/construction/processor/BindableProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="106" column="19" selection-start-line="106" selection-start-column="19" selection-end-line="106" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -276,15 +308,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/WhereParent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/WhereClause.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/WhereClauseParenthesisGroup.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenthisizedWhereClauseBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenthwsizedWhereClauseBuilder.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/sql-scripts/drop.sql" />
-        <option value="$PROJECT_DIR$/src/test/resources/sql-scripts/clear.sql" />
-        <option value="$PROJECT_DIR$/src/test/java/com/dfaris/query/construction/RecordMapper.java" />
         <option value="$PROJECT_DIR$/src/test/resources/simplelogger.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/from/join/CrossJoin.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/from/FromClause.java" />
@@ -292,7 +315,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/from/join/InnerJoin.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/from/join/LeftJoin.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/from/join/RightJoin.java" />
-        <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/gradle.properties" />
         <option value="$PROJECT_DIR$/src/test/resources/sql-scripts/create.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/from/join/FromJoinBuilder.java" />
@@ -303,7 +325,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableIndividualWhereClause.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableIndividualWhereClauseBuilderBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableParenthesizedWhererClauseBuilder.java" />
-        <option value="$PROJECT_DIR$/docker-stuffs/Dockerfile" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableIndividualWhereClauseBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/WhereAppender.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenAppender.java" />
@@ -326,15 +347,26 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClause.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/preprocess/BindableProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/select/SelectQuery.java" />
+        <option value="$PROJECT_DIR$/docker-stuffs/while-in-container.sh" />
+        <option value="$PROJECT_DIR$/docker-stuffs/postgres.sh" />
+        <option value="$PROJECT_DIR$/docker-stuffs/Dockerfile" />
+        <option value="$PROJECT_DIR$/docker-stuffs/perform-cycle.sh" />
+        <option value="$PROJECT_DIR$/docker-stuffs/new-container.sh" />
+        <option value="$PROJECT_DIR$/processing/src/main/java/com/dfaris/query/construction/processor/BindableProcessor.java" />
+        <option value="$PROJECT_DIR$/annotations/build.gradle" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
+        <option value="$PROJECT_DIR$/library/build.gradle" />
+        <option value="$PROJECT_DIR$/processing/build.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="80" />
-    <option name="y" value="22" />
-    <option name="width" value="1840" />
-    <option name="height" value="917" />
+    <option name="x" value="156" />
+    <option name="y" value="101" />
+    <option name="width" value="1657" />
+    <option name="height" value="909" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -345,7 +377,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -356,80 +387,30 @@
             <path>
               <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
               <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="annotations" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
+              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
+              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
               <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="dfaris" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="dfaris" type="462c0819:PsiDirectoryNode" />
-              <item name="query" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="dfaris" type="462c0819:PsiDirectoryNode" />
-              <item name="query" type="462c0819:PsiDirectoryNode" />
-              <item name="construction" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
               <item name="generated" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
               <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
               <item name="generated" type="462c0819:PsiDirectoryNode" />
               <item name="sources" type="462c0819:PsiDirectoryNode" />
@@ -437,6 +418,7 @@
             <path>
               <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
               <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
               <item name="generated" type="462c0819:PsiDirectoryNode" />
               <item name="sources" type="462c0819:PsiDirectoryNode" />
@@ -445,6 +427,7 @@
             <path>
               <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
               <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
               <item name="generated" type="462c0819:PsiDirectoryNode" />
               <item name="sources" type="462c0819:PsiDirectoryNode" />
@@ -454,130 +437,47 @@
             <path>
               <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
               <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="processing" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
+              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="processing" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
+              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="processing" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
               <item name="libs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
               <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="docker-stuffs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="sql-scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="processing" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
               <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="processing" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="construction" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="construction" type="462c0819:PsiDirectoryNode" />
-              <item name="from" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="construction" type="462c0819:PsiDirectoryNode" />
-              <item name="from" type="462c0819:PsiDirectoryNode" />
-              <item name="join" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="construction" type="462c0819:PsiDirectoryNode" />
-              <item name="preprocess" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="construction" type="462c0819:PsiDirectoryNode" />
-              <item name="select" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="construction" type="462c0819:PsiDirectoryNode" />
-              <item name="where" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="construction" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="query-construction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="query-construction" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552020134963" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect" value="PostgreSQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/processing/src/main/java/com/dfaris/query/construction/processor/BindableProcessor.java" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -589,15 +489,15 @@
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="com.dfaris.query.construction.ValueConvertors" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.dfaris.query.construction.where" />
+      <recent name="com.dfaris.query.construction" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="com.dfaris.query.construction.where" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.dfaris.query.construction.where" />
-      <recent name="com.dfaris.query.construction" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -612,7 +512,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.query-construction [build]">
+  <component name="RunManager" selected="Docker.default">
     <configuration name="query-construction [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -651,19 +551,19 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Docker Image" type="docker-deploy" factoryName="docker-image" temporary="true" server-name="Docker">
+    <configuration name="default" type="docker-deploy" factoryName="docker-image" temporary="true" server-name="Docker">
       <deployment type="docker-image">
         <settings>
-          <option name="command" value="sh" />
-          <option name="containerName" value="query_construction" />
+          <option name="command" value="" />
+          <option name="containerName" value="query-construction" />
           <option name="entrypoint" value="" />
-          <option name="imageTag" value="e8be3795b868" />
+          <option name="imageTag" value="query-construction:release" />
           <option name="commandLineOptions" value="" />
           <option name="volumeBindings">
             <list>
               <DockerVolumeBindingImpl>
                 <option name="containerPath" value="/project" />
-                <option name="hostPath" value="$PROJECT_DIR$/" />
+                <option name="hostPath" value="$PROJECT_DIR$" />
               </DockerVolumeBindingImpl>
             </list>
           </option>
@@ -702,11 +602,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.default" />
+        <item itemvalue="Docker.docker-stuffs/Dockerfile" />
         <item itemvalue="Gradle.query-construction [build]" />
         <item itemvalue="Gradle.query-construction [test]" />
-        <item itemvalue="Docker.query_construction" />
-        <item itemvalue="Docker.docker-stuffs/Dockerfile" />
-        <item itemvalue="Docker.Docker Image" />
       </list>
     </recent_temporary>
   </component>
@@ -768,14 +667,16 @@
     <option name="totallyTimeSpent" value="72787000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="80" y="22" width="1840" height="917" extended-state="0" />
+    <frame x="156" y="101" width="1657" height="909" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27141267" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49904397" visible="true" weight="0.27870888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
-      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Favorites" order="4" sideWeight="0.500956" side_tool="true" weight="0.27870888" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296501" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.26545453" />
@@ -783,415 +684,174 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" weight="0.3296501" />
+      <window_info anchor="bottom" id="Docker" order="7" sideWeight="0.49968964" weight="0.32948717" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50031036" side_tool="true" weight="0.32948717" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Build" order="12" weight="0.15285452" />
+      <window_info anchor="bottom" id="Build" order="12" visible="true" weight="0.15256411" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3296501" />
       <window_info anchor="bottom" id="Duplicate detector" order="14" weight="0.3296501" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Gradle" order="4" visible="true" weight="0.3298109" />
+      <window_info anchor="right" id="Gradle" order="4" weight="0.32960895" />
       <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Database" order="7" weight="0.3298109" />
+      <window_info anchor="right" id="Capture Analysis" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/postgresql/postgresql/9.1-901-1.jdbc4/8e9d82a070f2b4d9e8561a567bf4daca36eed4e2/postgresql-9.1-901-1.jdbc4-sources.jar!/org/postgresql/ds/jdbc4/AbstractJdbc4SimpleDataSource.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenAppender.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenGroup.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/CompoundWhereClause.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableParenthesizedWhereClauseBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableMultiWhereClauseBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractBindableWhereClauseBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractBindableMultiWhereClauseBuilder.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/annotation/processing/SupportedAnnotationTypes.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/preprocess/ChildOf.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/preprocess/HasBindableVersion.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClauseBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractParenthesizedWhereClauseBuilder.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/annotation/processing/AbstractProcessor.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/lang/model/element/VariableElement.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/lang/model/element/TypeElement.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/lang/model/element/Element.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/java/lang/Object.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/lang/model/type/TypeMirror.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/lib/tools.jar!/com/sun/tools/javac/code/Type.class" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/java/lang/StrictMath.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/java/lang/Math.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.auto.service/auto-service/1.0-rc4/4e0285a57f33a9139e203687a617d7c98104b73a/auto-service-1.0-rc4-sources.jar!/com/google/auto/service/AutoService.java" />
+    <entry file="file://$PROJECT_DIR$/build/classes/java/main/com/dfaris/query/construction/where/IndividualWhereClause.class" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/preprocess/BindableProcessor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractMultiWhereBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClause.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/select/SelectQuery.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractWhereBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/dfaris/query/construction/SelectQueryTestsOrSomething.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/MultiWhereClauseBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenthesizedWhereClauseBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/.project" />
+    <entry file="file://$PROJECT_DIR$/.classpath" />
+    <entry file="file://$PROJECT_DIR$/docker-stuffs/postgres.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        <state relative-caret-position="30">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/sql/DataSource.java">
+    <entry file="file://$PROJECT_DIR$/docker-stuffs/run-container.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-stuffs/build.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-stuffs/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="76" column="17" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
+        <state relative-caret-position="120">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/postgresql/postgresql/9.1-901-1.jdbc4/8e9d82a070f2b4d9e8561a567bf4daca36eed4e2/postgresql-9.1-901-1.jdbc4-sources.jar!/org/postgresql/ds/PGSimpleDataSource.java">
+    <entry file="file://$PROJECT_DIR$/docker-stuffs/perform-cycle.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+        <state relative-caret-position="45">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/postgresql/postgresql/9.1-901-1.jdbc4/8e9d82a070f2b4d9e8561a567bf4daca36eed4e2/postgresql-9.1-901-1.jdbc4-sources.jar!/org/postgresql/jdbc2/optional/SimpleDataSource.java">
+    <entry file="file://$PROJECT_DIR$/docker-stuffs/new-container.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="13" column="48" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        <state relative-caret-position="15">
+          <caret line="1" column="138" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="138" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-5.1.1-all/97z1ksx6lirer3kbvdnh7jtjg/gradle-5.1.1/src/core/org/gradle/api/internal/AbstractTask.java">
+    <entry file="file://$PROJECT_DIR$/processing/src/main/java/com/dfaris/query/construction/processor/BindableProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="91" column="77" lean-forward="true" selection-start-line="91" selection-start-column="77" selection-end-line="91" selection-end-column="77" />
+        <state relative-caret-position="285">
+          <caret line="106" column="19" selection-start-line="106" selection-start-column="19" selection-end-line="106" selection-end-column="19" />
           <folding>
-            <element signature="e#14269#14270#0" expanded="true" />
-            <element signature="e#14298#14299#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+    <entry file="file://$PROJECT_DIR$/annotations/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="79" selection-start-line="5" selection-start-column="79" selection-end-line="5" selection-end-column="79" />
+          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/java/io/PipedOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="74" column="11" selection-start-line="74" selection-start-column="11" selection-end-line="74" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql-scripts/drop.sql" />
-    <entry file="file://$PROJECT_DIR$/src/test/resources/sql-scripts/drop.sql" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/from/join/FromJoinBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
+        <state relative-caret-position="150">
+          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/from/FromBuilder.java">
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Iterable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="62" column="7" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1920#1921#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
-            <element signature="e#2172#2173#0" expanded="true" />
-            <element signature="e#2228#2229#0" expanded="true" />
-            <element signature="e#2299#2300#0" expanded="true" />
-            <element signature="e#2362#2363#0" expanded="true" />
-            <element signature="e#2422#2423#0" expanded="true" />
-            <element signature="e#2479#2480#0" expanded="true" />
-            <element signature="e#2674#2675#0" expanded="true" />
-            <element signature="e#2730#2731#0" expanded="true" />
-            <element signature="e#2801#2802#0" expanded="true" />
-            <element signature="e#2864#2865#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/sql-scripts/create.sql" />
-    <entry file="file://$PROJECT_DIR$/sql-scripts/create.sql">
+    <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-5.2.1-all/bviwmvmbexq6idcscbicws5me/gradle-5.2.1/src/core-api/org/gradle/api/artifacts/dsl/DependencyHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-161" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/WhereBuilder.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableIndividualWhereClauseBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        <state relative-caret-position="-3261">
+          <caret line="252" column="17" selection-start-line="252" selection-start-column="17" selection-end-line="252" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-stuffs/Dockerfile">
+    <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-5.2.1-all/bviwmvmbexq6idcscbicws5me/gradle-5.2.1/src/core-api/org/gradle/api/Project.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        <state relative-caret-position="91">
+          <caret line="1520" column="73" lean-forward="true" selection-start-line="1520" selection-start-column="73" selection-end-line="1520" selection-end-column="73" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenAppender.java">
+    <entry file="file://$PROJECT_DIR$/processing/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        <state relative-caret-position="165">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="89" selection-start-line="17" selection-start-column="89" selection-end-line="17" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/CompoundWhereClause.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableParenthesizedWhereClauseBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/BindableMultiWhereClauseBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractBindableWhereClauseBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="20" column="53" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractBindableMultiWhereClauseBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/annotation/processing/SupportedAnnotationTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="48" column="18" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/preprocess/ChildOf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/preprocess/HasBindableVersion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClauseBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="87" selection-start-line="19" selection-start-column="87" selection-end-line="19" selection-end-column="87" />
-          <folding>
-            <element signature="e#751#752#0" expanded="true" />
-            <element signature="e#816#817#0" expanded="true" />
-            <element signature="e#881#882#0" expanded="true" />
-            <element signature="e#945#946#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractParenthesizedWhereClauseBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-          <folding>
-            <element signature="e#346#347#0" expanded="true" />
-            <element signature="e#385#386#0" expanded="true" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#473#474#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/MultiWhereClauseBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class">
+    <entry file="file://$PROJECT_DIR$/library/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/ParenthesizedWhereClauseBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/dfaris/query/construction/SelectQueryTestsOrSomething.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractMultiWhereBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/annotation/processing/AbstractProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/lang/model/element/VariableElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/lang/model/element/TypeElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-355">
-          <caret line="74" column="55" lean-forward="true" selection-start-line="74" selection-start-column="55" selection-end-line="74" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/lang/model/element/Element.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
-          <folding>
-            <element signature="e#10065#10066#0" expanded="true" />
-            <element signature="e#10148#10149#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/javax/lang/model/type/TypeMirror.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-196">
-          <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/lib/tools.jar!/com/sun/tools/javac/code/Type.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="1194" column="22" selection-start-line="1194" selection-start-column="22" selection-end-line="1194" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/java/lang/StrictMath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="631" column="32" selection-start-line="631" selection-start-column="32" selection-end-line="631" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/java/lang/Math.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="643" column="27" selection-start-line="643" selection-start-column="27" selection-end-line="643" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/AbstractWhereBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="129" column="74" selection-start-line="129" selection-start-column="74" selection-end-line="129" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.auto.service/auto-service/1.0-rc4/4e0285a57f33a9139e203687a617d7c98104b73a/auto-service-1.0-rc4-sources.jar!/com/google/auto/service/AutoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/classes/java/main/com/dfaris/query/construction/where/IndividualWhereClause.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#1912#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/where/IndividualWhereClause.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/preprocess/BindableProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5123#5124#0" expanded="true" />
-            <element signature="e#5170#5171#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfaris/query/construction/select/SelectQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="33" lean-forward="true" selection-end-line="67" />
+        <state relative-caret-position="225">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
         </state>
       </provider>
     </entry>

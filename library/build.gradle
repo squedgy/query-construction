@@ -1,7 +1,8 @@
+import java.util.function.Consumer
 
 plugins {
-    id 'java-library'
-    id 'idea'
+//    id "net.ltgt.apt-idea" version "0.21"
+    id "net.ltgt.apt" version "0.21"
 }
 
 repositories {
@@ -9,6 +10,8 @@ repositories {
 }
 
 dependencies {
+
+
     testImplementation group: 'junit', name:'junit', version: '4.12'
     testImplementation group: 'org.jdbi', name: 'jdbi3-core', version: '3.6.0'
     testImplementation group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
@@ -16,9 +19,12 @@ dependencies {
     testImplementation group: 'fun.mike', name: 'record-alpha', version: '0.0.38'
     testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.26'
 
-    implementation(project(':annotations'))
-    implementation(project(':processing'))
+
+    annotationProcessor(project(':processing'))
+
+    implementation project(':annotations')
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
+
 }
 
 tasks.test {
@@ -33,24 +39,28 @@ logging.captureStandardOutput(LogLevel.ERROR)
 tasks.create('initTestDb') {
     doLast {
         exec {
-            logger.info('creating db')
+            logger.lifecycle('creating db')
             commandLine 'createdb', '-e', 'test-db'
         }
         exec {
-            logger.info('creating/populating db')
+            logger.lifecycle('creating/populating db')
             commandLine 'psql', '-f', 'sql-scripts/create.sql', 'test-db'
         }
         exec {
-            logger.info("Database information:")
+            logger.lifecycle("Database information:")
             commandLine 'psql', '-c', '\\dt', 'test-db'
         }
     }
 }
 
 tasks.create('postTests', Exec) {
-    logger.info('dropping database')
     commandLine 'dropdb', '-e', 'test-db'
+
+    doLast{
+        logger.lifecycle('dropping database')
+    }
 }
 
 tasks.test.dependsOn(tasks.getByName('initTestDb'))
 tasks.test.finalizedBy(tasks.getByName('postTests'))
+tasks.compileJava.dependsOn(':processing:jar')

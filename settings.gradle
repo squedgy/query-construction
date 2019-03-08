@@ -8,6 +8,4 @@
  */
 
 rootProject.name = 'query-construction'
-include 'annotations'
-include 'processing'
-include 'library'
+include 'annotations', 'processing', 'library'

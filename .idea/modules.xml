@@ -3,8 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/query-construction.iml" filepath="$PROJECT_DIR$/.idea/query-construction.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/query-construction.main.iml" filepath="$PROJECT_DIR$/.idea/modules/query-construction.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/query-construction.test.iml" filepath="$PROJECT_DIR$/.idea/modules/query-construction.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotations/query-construction.annotations.iml" filepath="$PROJECT_DIR$/.idea/modules/annotations/query-construction.annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotations/query-construction.annotations.main.iml" filepath="$PROJECT_DIR$/.idea/modules/annotations/query-construction.annotations.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotations/query-construction.annotations.test.iml" filepath="$PROJECT_DIR$/.idea/modules/annotations/query-construction.annotations.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/query-construction.library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/query-construction.library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/query-construction.library.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/query-construction.library.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/query-construction.library.test.iml" filepath="$PROJECT_DIR$/.idea/modules/library/query-construction.library.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processing/query-construction.processing.iml" filepath="$PROJECT_DIR$/.idea/modules/processing/query-construction.processing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processing/query-construction.processing.main.iml" filepath="$PROJECT_DIR$/.idea/modules/processing/query-construction.processing.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processing/query-construction.processing.test.iml" filepath="$PROJECT_DIR$/.idea/modules/processing/query-construction.processing.test.iml" />
     </modules>
   </component>
 </project>
