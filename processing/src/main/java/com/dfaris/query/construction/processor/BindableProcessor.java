@@ -104,7 +104,7 @@ public class BindableProcessor extends AbstractProcessor {
                 messager.printMessage(Diagnostic.Kind.ERROR, e1.getLocalizedMessage(), e);
             }
         }
-        return true;
+        return false;
     }
 
     protected String getChars(int value) {

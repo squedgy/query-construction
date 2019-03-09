@@ -1,8 +1,6 @@
-import java.util.function.Consumer
 
 plugins {
-//    id "net.ltgt.apt-idea" version "0.21"
-    id "net.ltgt.apt" version "0.21"
+    id "net.ltgt.apt"
 }
 
 repositories {
@@ -20,10 +18,12 @@ dependencies {
     testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.26'
 
 
-    annotationProcessor(project(':processing'))
+//    annotationProcessor fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':annotations')
+    api project(':annotations')
+    annotationProcessor project(':processing')
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
+
 
 }
 
@@ -50,6 +50,10 @@ tasks.create('initTestDb') {
             logger.lifecycle("Database information:")
             commandLine 'psql', '-c', '\\dt', 'test-db'
         }
+        logger.lifecycle(fileTree(dir: 'libs').asPath)
+        fileTree(dir: 'libs').files.forEach{ file ->
+            logger.lifecycle(file.name)
+        }
     }
 }
 
@@ -63,4 +67,4 @@ tasks.create('postTests', Exec) {
 
 tasks.test.dependsOn(tasks.getByName('initTestDb'))
 tasks.test.finalizedBy(tasks.getByName('postTests'))
-tasks.compileJava.dependsOn(':processing:jar')
+//tasks.compileJava.dependsOn(':processing:jar')

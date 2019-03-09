@@ -1,22 +1,39 @@
 
+plugins {
+    id "net.ltgt.apt" version "0.21"
+}
+
+
 allprojects {
 
     repositories {
         jcenter()
     }
-    
-    def deps = {
-        slf4j='org.slf4j:slf4j-api:1.7.26'
-    };
 
 }
 
 subprojects {
     apply plugin: 'java-library'
-    apply plugin: 'java-base'
-    apply plugin: 'java'
     apply plugin: 'idea'
     version = '1.0-ALPHA'
     targetCompatibility=1.8
     sourceCompatibility=1.8
+
+    dependencies {
+        implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
+    }
+
+}
+
+project(":library") {
+    dependencies {
+        implementation project(':processing')
+        api project(':annotations')
+    }
+}
+
+project(':processing') {
+    dependencies {
+        api project(':annotations')
+    }
 }
