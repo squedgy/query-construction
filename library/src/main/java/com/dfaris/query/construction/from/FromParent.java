@@ -1,7 +1,7 @@
 package com.dfaris.query.construction.from;
 
-public interface FromParent{
+public interface FromParent {
 
-    void setFrom(FromClause from);
+	void setFrom(FromClause from);
 
 }

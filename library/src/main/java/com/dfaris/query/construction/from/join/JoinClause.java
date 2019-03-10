@@ -4,18 +4,17 @@ import com.dfaris.query.construction.Clause;
 
 public abstract class JoinClause extends Clause {
 
-    @Override
-    public String getClauseStarter() {
-        return "JOIN";
-    }
+	@Override
+	public String getClauseStarter() {
+		return "JOIN";
+	}
 
-    public enum Type{
-        CROSS,
-        INNER,
-        LEFT,
-        RIGHT,
-        FULL
-        ;
-    }
+	public enum Type {
+		CROSS,
+		INNER,
+		LEFT,
+		RIGHT,
+		FULL;
+	}
 
 }
