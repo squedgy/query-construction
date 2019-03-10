@@ -13,15 +13,18 @@ public class FromJoinBuilder<QueryBuilderType extends FromParent> extends JoinBu
 
 	protected final FromBuilder<QueryBuilderType> parent;
 
-	public FromJoinBuilder(FromBuilder<QueryBuilderType> builder, JoinClause.Type type, String table) {
+	public FromJoinBuilder(FromBuilder<QueryBuilderType> builder, JoinClause.Type type, String table, String alias){
 		super(type);
-		this.table(table);
 		this.parent = builder;
+		this.table(table, alias);
+	}
+
+	public FromJoinBuilder(FromBuilder<QueryBuilderType> builder, JoinClause.Type type, String table) {
+		this(builder, type, table, table);
 	}
 
 	public FromJoinBuilder(FromBuilder<QueryBuilderType> builder, JoinClause.Type type) {
-		super(type);
-		this.parent = builder;
+		this(builder, type, null);
 	}
 
 	public FromJoinBuilder<QueryBuilderType> table(String name) {

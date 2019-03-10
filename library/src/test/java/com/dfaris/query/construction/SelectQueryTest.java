@@ -1,5 +1,6 @@
 package com.dfaris.query.construction;
 
+import com.dfaris.query.construction.fun.FunStuff;
 import com.dfaris.query.construction.select.SelectQuery;
 import fun.mike.io.alpha.IO;
 import org.jdbi.v3.core.Jdbi;
@@ -205,6 +206,8 @@ public class SelectQueryTest {
 			1,2,3,4
 		));
 		runBoundQuery(query, binds);
+
+		FunStuff.main(null);
 
 	}
 
