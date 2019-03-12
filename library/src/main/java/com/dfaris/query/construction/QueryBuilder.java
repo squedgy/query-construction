@@ -1,7 +1,7 @@
 package com.dfaris.query.construction;
 
-public abstract class QueryBuilder<Return> {
+public interface QueryBuilder<Ret extends Query> {
 
-	public abstract Return build();
+	Ret build();
 
 }

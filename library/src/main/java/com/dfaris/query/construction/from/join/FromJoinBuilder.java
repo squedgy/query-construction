@@ -1,33 +1,34 @@
 package com.dfaris.query.construction.from.join;
 
+import com.dfaris.query.construction.Query;
 import com.dfaris.query.construction.from.FromBuilder;
 import com.dfaris.query.construction.from.FromParent;
+import com.dfaris.query.construction.select.SelectQuery;
 
-public class FromJoinBuilder<QueryBuilderType extends FromParent> extends JoinBuilder<FromJoinBuilder<QueryBuilderType>, FromBuilder<QueryBuilderType>> {
+public class FromJoinBuilder extends FromBuilder {
 
 	protected String table,
 			alias,
 			tableColumn,
 			otherTableAlias,
 			onColumn;
+	protected JoinClause.Type type;
 
-	protected final FromBuilder<QueryBuilderType> parent;
-
-	public FromJoinBuilder(FromBuilder<QueryBuilderType> builder, JoinClause.Type type, String table, String alias){
-		super(type);
-		this.parent = builder;
+	public FromJoinBuilder(FromBuilder builder, JoinClause.Type type, String table, String alias){
+		super(builder);
+		this.type = type;
 		this.table(table, alias);
 	}
 
-	public FromJoinBuilder(FromBuilder<QueryBuilderType> builder, JoinClause.Type type, String table) {
+	public FromJoinBuilder(FromBuilder builder, JoinClause.Type type, String table) {
 		this(builder, type, table, table);
 	}
 
-	public FromJoinBuilder(FromBuilder<QueryBuilderType> builder, JoinClause.Type type) {
+	public FromJoinBuilder(FromBuilder builder, JoinClause.Type type) {
 		this(builder, type, null);
 	}
 
-	public FromJoinBuilder<QueryBuilderType> table(String name) {
+	public FromJoinBuilder table(String name) {
 		this.table = name;
 		if (alias == null) {
 			this.alias = name;
@@ -35,26 +36,26 @@ public class FromJoinBuilder<QueryBuilderType extends FromParent> extends JoinBu
 		return this;
 	}
 
-	public FromJoinBuilder<QueryBuilderType> table(String name, String alias) {
+	public FromJoinBuilder table(String name, String alias) {
 		this.table = name;
 		this.alias = alias;
 		return this;
 	}
 
-	public FromJoinBuilder<QueryBuilderType> alias(String alias) {
+	public FromJoinBuilder alias(String alias) {
 		this.alias = alias;
 		return this;
 	}
 
-	public FromBuilder<QueryBuilderType> on(String column, String otherTableAlias, String onColumn) {
+	public FromBuilder on(String column, String otherTableAlias, String onColumn) {
 		this.tableColumn = column;
 		this.otherTableAlias = otherTableAlias;
 		this.onColumn = onColumn;
-		parent.addJoin(build());
-		return parent;
+		addJoin(buildClause());
+		return this;
 	}
 
-	public FromJoinBuilder<QueryBuilderType> reset(JoinClause.Type type) {
+	public FromJoinBuilder reset(JoinClause.Type type) {
 		this.alias = null;
 		this.table = null;
 		this.onColumn = null;
@@ -64,7 +65,7 @@ public class FromJoinBuilder<QueryBuilderType extends FromParent> extends JoinBu
 		return this;
 	}
 
-	protected final JoinClause build() {
+	protected final JoinClause buildClause() {
 		if (type == JoinClause.Type.CROSS) {
 			return new CrossJoin(table);
 		} else if (type == JoinClause.Type.INNER) {
@@ -78,5 +79,10 @@ public class FromJoinBuilder<QueryBuilderType extends FromParent> extends JoinBu
 		}
 
 		return null;
+	}
+
+	public SelectQuery build() {
+		addJoin(buildClause());
+		return super.build();
 	}
 }

@@ -1,6 +1,9 @@
 package com.dfaris.query.construction.where;
 
-public interface WhereParent {
+import com.dfaris.query.construction.Query;
+import com.dfaris.query.construction.QueryBuilder;
+
+public interface WhereParent<Ret extends Query> extends QueryBuilder<Ret> {
 
 	void setWhere(WhereClause clause);
 

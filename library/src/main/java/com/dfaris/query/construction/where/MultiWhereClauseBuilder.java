@@ -1,15 +1,19 @@
 package com.dfaris.query.construction.where;
 
-public class MultiWhereClauseBuilder<Parent extends WhereParent>
+import com.dfaris.query.construction.Query;
+
+public class MultiWhereClauseBuilder<QueryType extends Query,
+		Parent extends WhereParent<QueryType>>
 		extends AbstractMultiWhereBuilder<Parent,
-		MultiWhereClauseBuilder<Parent>,
-		MultiWhereClauseBuilder<Parent>,
-		ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>>> {
+		MultiWhereClauseBuilder<QueryType, Parent>,
+		MultiWhereClauseBuilder<QueryType, Parent>,
+		ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>>>
+		implements WhereParent<QueryType> {
 	private String andOr;
 	private WhereClause a;
 	private ParenGroup parenGroup;
 
-	MultiWhereClauseBuilder(IndividualWhereClauseBuilder<Parent> builder, String andOr) {
+	MultiWhereClauseBuilder(IndividualWhereClauseBuilder<QueryType, Parent> builder, String andOr) {
 		this(builder, builder.buildClause(), andOr);
 	}
 
@@ -21,23 +25,23 @@ public class MultiWhereClauseBuilder<Parent extends WhereParent>
 		this.refe = this;
 	}
 
-	public MultiWhereClauseBuilder<Parent> and() {
+	public MultiWhereClauseBuilder<QueryType, Parent> and() {
 		this.a = buildClause();
 		this.andOr = "and";
 		return this.refe;
 	}
 
-	public MultiWhereClauseBuilder<Parent> or() {
+	public MultiWhereClauseBuilder<QueryType, Parent> or() {
 		this.a = buildClause();
 		this.andOr = "or";
 		return this.refe;
 	}
 
-	public ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>> startParenthesizedGroup() {
+	public ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>> startParenthesizedGroup() {
 		return new ParenthesizedWhereClauseBuilder<>(this);
 	}
 
-	public Parent build() {
+	public QueryType build() {
 		WhereClause finalWhere;
 		if (this.andOr != null) {
 			finalWhere = buildClause();
@@ -58,7 +62,7 @@ public class MultiWhereClauseBuilder<Parent extends WhereParent>
 			else finalWhere = parenGroup;
 		}
 		parent.setWhere(finalWhere);
-		return parent;
+		return parent.build();
 	}
 
 }

@@ -33,13 +33,8 @@ public abstract class Query {
 				new ClauseOrder(FROM, false),
 				new ClauseOrder(WHERE, false),
 				new ClauseOrder(GROUP_BY, false),
-				new ClauseOrder(HAVING, false),
-				new ClauseOrder(WINDOW, false),
 				new ClauseOrder(ORDER_BY, false),
-				new ClauseOrder(LIMIT, false),
-				new ClauseOrder(OFFSET, false),
-				new ClauseOrder(FETCH, false),
-				new ClauseOrder(FOR, false)
+				new ClauseOrder(HAVING, false)
 		),
 		UPDATE(
 				new ClauseOrder(SET, true),

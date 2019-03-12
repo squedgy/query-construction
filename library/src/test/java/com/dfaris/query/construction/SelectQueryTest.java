@@ -60,14 +60,12 @@ public class SelectQueryTest {
 				.innerJoin("test")
 				.alias("t")
 				.on("testId", "anotherTest", "anotherTestId")
-				.build()
 				.where()
 				.column("t.testId")
 				.greaterThan(1)
 				.and()
 				.column("t.bool")
 				.notNull()
-				.build()
 				.build();
 
 		runQuery(query);

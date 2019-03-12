@@ -1,11 +1,14 @@
 package com.dfaris.query.construction.where;
 
+import com.dfaris.query.construction.Query;
+import com.dfaris.query.construction.QueryBuilder;
 import com.dfaris.query.construction.ValueConverters;
+import javafx.util.Builder;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn, ParenReturn> implements WhereParent {
+public abstract class AbstractWhereBuilder<Parent extends WhereParent, This, AndOrReturn, ParenReturn> implements WhereParent {
 
 	protected final Parent parent;
 	protected String column;
@@ -140,7 +143,7 @@ public abstract class AbstractWhereBuilder<Parent, This, AndOrReturn, ParenRetur
 
 	public abstract AndOrReturn or();
 
-	public abstract Parent build();
+	public abstract Query build();
 
 	protected boolean canBuildClause() {
 		return column != null && operator != null && constants.size() > 0;

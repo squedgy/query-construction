@@ -1,11 +1,14 @@
 package com.dfaris.query.construction.where;
 
-public class ParenthesizedWhereClauseBuilder<Parent extends WhereParent>
+import com.dfaris.query.construction.Query;
+
+public class ParenthesizedWhereClauseBuilder<QueryType extends Query,
+		Parent extends WhereParent<QueryType>>
 		extends AbstractParenthesizedWhereClauseBuilder<Parent,
-		ParenthesizedWhereClauseBuilder<Parent>,
-		ParenthesizedWhereClauseBuilder<Parent>,
-		ParenthesizedWhereClauseBuilder<ParenthesizedWhereClauseBuilder<Parent>>,
-		Parent> {
+		ParenthesizedWhereClauseBuilder<QueryType, Parent>,
+		ParenthesizedWhereClauseBuilder<QueryType, Parent>,
+		ParenthesizedWhereClauseBuilder<QueryType, ParenthesizedWhereClauseBuilder<QueryType, Parent>>,
+		Parent> implements WhereParent<QueryType> {
 
 	ParenthesizedWhereClauseBuilder(Parent parent) {
 		super(parent, null, null);
@@ -15,26 +18,26 @@ public class ParenthesizedWhereClauseBuilder<Parent extends WhereParent>
 
 
 	@Override
-	public ParenthesizedWhereClauseBuilder<Parent> and() {
+	public ParenthesizedWhereClauseBuilder<QueryType, Parent> and() {
 		this.a = buildClause();
 		this.andOr = "and";
 		return this;
 	}
 
 	@Override
-	public ParenthesizedWhereClauseBuilder<Parent> or() {
+	public ParenthesizedWhereClauseBuilder<QueryType, Parent> or() {
 		this.a = buildClause();
 		this.andOr = "or";
 		return this;
 	}
 
 	@Override
-	public ParenthesizedWhereClauseBuilder<ParenthesizedWhereClauseBuilder<Parent>> startParenthesizedGroup() {
+	public ParenthesizedWhereClauseBuilder<QueryType, ParenthesizedWhereClauseBuilder<QueryType, Parent>> startParenthesizedGroup() {
 		return new ParenthesizedWhereClauseBuilder<>(this);
 	}
 
 	@Override
-	public Parent endParenthesizedGroup() {
+	public Query endParenthesizedGroup() {
 		WhereClause finalClause = buildClause();
 		if (this.group != null) {
 			if (this.group.getFollowedBy() != null)
@@ -58,9 +61,9 @@ public class ParenthesizedWhereClauseBuilder<Parent extends WhereParent>
 	}
 
 	@Override
-	public Parent build() {
+	public QueryType build() {
 		parent.setWhere(group);
-		return parent;
+		return parent.build();
 	}
 
 	private void setParentWhere(String andOr) {

@@ -1,6 +1,6 @@
 package com.dfaris.query.construction.where;
 
-public abstract class AbstractMultiWhereBuilder<Parent, This, AndOrReturn, StartParenReturn>
+public abstract class AbstractMultiWhereBuilder<Parent extends WhereParent, This, AndOrReturn, StartParenReturn>
 		extends AbstractWhereBuilder<Parent, This, AndOrReturn, StartParenReturn> implements WhereParent {
 
 	protected String andOr;
