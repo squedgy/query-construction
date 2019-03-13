@@ -2,8 +2,17 @@ package com.dfaris.query.construction.where;
 
 import com.dfaris.query.construction.Query;
 
-public abstract class AbstractParenthesizedWhereClauseBuilder<Parent extends WhereParent, This, AndOrReturn, StartParenReturn, EndParenReturn>
-		extends AbstractMultiWhereBuilder<Parent, This, AndOrReturn, StartParenReturn> {
+public abstract class AbstractParenthesizedWhereClauseBuilder<QueryType extends Query,
+															Parent extends WhereParent<QueryType>,
+															This,
+															AndOrReturn,
+															StartParenReturn,
+															EndParenReturn>
+		extends AbstractMultiWhereBuilder<QueryType,
+										Parent,
+										This,
+										AndOrReturn,
+										StartParenReturn> {
 
 
 	AbstractParenthesizedWhereClauseBuilder(Parent parent, WhereClause a, String andOr) { super(parent, a, andOr); }
@@ -14,6 +23,6 @@ public abstract class AbstractParenthesizedWhereClauseBuilder<Parent extends Whe
 
 	public abstract EndParenReturn endParenthesizedGroupOr();
 
-	public abstract Query endParenthesizedGroup();
+	public abstract Parent endParenthesizedGroup();
 
 }

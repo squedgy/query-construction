@@ -10,8 +10,13 @@ public class ParenGroup extends WhereClause {
 		this.clause = clause;
 	}
 
+	ParenGroup(ParenGroup a){
+		this(a.clause, null);
+	}
+
 	ParenGroup(ParenGroup a, ParenGroup b) {
-		clause = new CompoundWhereClause(new ParenGroup(a.clause, null), a.followedBy, b);
+		clause = new CompoundWhereClause(new ParenGroup(a), a.followedBy, new ParenGroup(b));
+		followedBy = b.followedBy;
 	}
 
 	String getFollowedBy() {

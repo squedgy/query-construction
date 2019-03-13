@@ -3,12 +3,12 @@ package com.dfaris.query.construction.where;
 import com.dfaris.query.construction.Query;
 
 public class MultiWhereClauseBuilder<QueryType extends Query,
-		Parent extends WhereParent<QueryType>>
-		extends AbstractMultiWhereBuilder<Parent,
-		MultiWhereClauseBuilder<QueryType, Parent>,
-		MultiWhereClauseBuilder<QueryType, Parent>,
-		ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>>>
-		implements WhereParent<QueryType> {
+									Parent extends WhereParent<QueryType>>
+		extends AbstractMultiWhereBuilder<QueryType,
+										Parent,
+										MultiWhereClauseBuilder<QueryType, Parent>,
+										MultiWhereClauseBuilder<QueryType, Parent>,
+										ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>>> {
 	private String andOr;
 	private WhereClause a;
 	private ParenGroup parenGroup;
@@ -17,7 +17,7 @@ public class MultiWhereClauseBuilder<QueryType extends Query,
 		this(builder, builder.buildClause(), andOr);
 	}
 
-	MultiWhereClauseBuilder(AbstractWhereBuilder<Parent, ?, ?, ?> builder, WhereClause a, String andOr) {
+	MultiWhereClauseBuilder(AbstractWhereBuilder<QueryType, Parent, ?, ?, ?> builder, WhereClause a, String andOr) {
 		super(builder.parent, a, andOr);
 		this.binding = builder.binding;
 		this.a = a;

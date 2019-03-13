@@ -9,14 +9,18 @@ import com.dfaris.query.construction.from.join.JoinClause;
 import com.dfaris.query.construction.group.GroupByBuilder;
 import com.dfaris.query.construction.select.SelectQuery;
 import com.dfaris.query.construction.select.SelectQuery.SelectQueryBuilder;
+import org.slf4j.Logger;
 
 import static com.dfaris.query.construction.from.join.JoinClause.Type.CROSS;
 import static com.dfaris.query.construction.from.join.JoinClause.Type.FULL;
 import static com.dfaris.query.construction.from.join.JoinClause.Type.INNER;
 import static com.dfaris.query.construction.from.join.JoinClause.Type.LEFT;
 import static com.dfaris.query.construction.from.join.JoinClause.Type.RIGHT;
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class FromBuilder extends SelectQueryBuilder {
+
+	private static Logger log = getLogger(FromBuilder.class);
 
 	private String table, alias;
 	private final List<JoinClause> joins;

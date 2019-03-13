@@ -1,7 +1,9 @@
 package com.dfaris.query.construction.where;
 
-public abstract class AbstractMultiWhereBuilder<Parent extends WhereParent, This, AndOrReturn, StartParenReturn>
-		extends AbstractWhereBuilder<Parent, This, AndOrReturn, StartParenReturn> implements WhereParent {
+import com.dfaris.query.construction.Query;
+
+public abstract class AbstractMultiWhereBuilder<QueryType extends Query, Parent extends WhereParent<QueryType>, This, AndOrReturn, StartParenReturn>
+		extends AbstractWhereBuilder<QueryType, Parent, This, AndOrReturn, StartParenReturn> {
 
 	protected String andOr;
 	protected WhereClause a;
@@ -22,8 +24,7 @@ public abstract class AbstractMultiWhereBuilder<Parent extends WhereParent, This
 		if (!canBuildClause()) {
 			if (group != null && group.getFollowedBy() == null) ret = group;
 			else if (super.canBuildClause()) ret = super.buildClause();
-			else
-				throw new IllegalStateException("Cannot build clause and group either doesn't exist or must be followed by another clause");
+			else throw new IllegalStateException("Cannot build clause and group either doesn't exist or must be followed by another clause");
 		} else {
 			if (a == null && group != null) {
 				ret = new CompoundWhereClause(group, super.buildClause());

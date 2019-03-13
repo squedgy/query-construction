@@ -38,8 +38,7 @@ public class FromJoinBuilder extends FromBuilder {
 
 	public FromJoinBuilder table(String name, String alias) {
 		this.table = name;
-		this.alias = alias;
-		return this;
+		return alias(alias);
 	}
 
 	public FromJoinBuilder alias(String alias) {
@@ -52,7 +51,7 @@ public class FromJoinBuilder extends FromBuilder {
 		this.otherTableAlias = otherTableAlias;
 		this.onColumn = onColumn;
 		addJoin(buildClause());
-		return this;
+		return new FromBuilder(this);
 	}
 
 	public FromJoinBuilder reset(JoinClause.Type type) {

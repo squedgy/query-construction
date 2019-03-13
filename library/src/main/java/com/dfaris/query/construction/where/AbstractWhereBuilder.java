@@ -8,7 +8,12 @@ import javafx.util.Builder;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class AbstractWhereBuilder<Parent extends WhereParent, This, AndOrReturn, ParenReturn> implements WhereParent {
+public abstract class AbstractWhereBuilder<QueryType extends Query,
+		Parent extends WhereParent<QueryType>,
+		This,
+		AndOrReturn,
+		ParenReturn>
+		implements WhereParent<QueryType> {
 
 	protected final Parent parent;
 	protected String column;
@@ -142,8 +147,6 @@ public abstract class AbstractWhereBuilder<Parent extends WhereParent, This, And
 	public abstract AndOrReturn and();
 
 	public abstract AndOrReturn or();
-
-	public abstract Query build();
 
 	protected boolean canBuildClause() {
 		return column != null && operator != null && constants.size() > 0;

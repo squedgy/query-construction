@@ -3,12 +3,13 @@ package com.dfaris.query.construction.where;
 import com.dfaris.query.construction.Query;
 
 public class ParenthesizedWhereClauseBuilder<QueryType extends Query,
-		Parent extends WhereParent<QueryType>>
-		extends AbstractParenthesizedWhereClauseBuilder<Parent,
-		ParenthesizedWhereClauseBuilder<QueryType, Parent>,
-		ParenthesizedWhereClauseBuilder<QueryType, Parent>,
-		ParenthesizedWhereClauseBuilder<QueryType, ParenthesizedWhereClauseBuilder<QueryType, Parent>>,
-		Parent> implements WhereParent<QueryType> {
+											Parent extends WhereParent<QueryType>>
+		extends AbstractParenthesizedWhereClauseBuilder<QueryType,
+														Parent,
+														ParenthesizedWhereClauseBuilder<QueryType, Parent>,
+														ParenthesizedWhereClauseBuilder<QueryType, Parent>,
+														ParenthesizedWhereClauseBuilder<QueryType, ParenthesizedWhereClauseBuilder<QueryType, Parent>>,
+														Parent> {
 
 	ParenthesizedWhereClauseBuilder(Parent parent) {
 		super(parent, null, null);
@@ -37,7 +38,7 @@ public class ParenthesizedWhereClauseBuilder<QueryType extends Query,
 	}
 
 	@Override
-	public Query endParenthesizedGroup() {
+	public Parent endParenthesizedGroup() {
 		WhereClause finalClause = buildClause();
 		if (this.group != null) {
 			if (this.group.getFollowedBy() != null)
@@ -45,7 +46,8 @@ public class ParenthesizedWhereClauseBuilder<QueryType extends Query,
 			else if (finalClause == null) finalClause = group;
 		}
 		this.group = new ParenGroup(finalClause, null);
-		return build();
+		parent.setWhere(group);
+		return parent;
 	}
 
 	@Override

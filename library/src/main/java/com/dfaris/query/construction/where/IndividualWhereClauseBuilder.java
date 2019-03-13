@@ -3,11 +3,12 @@ package com.dfaris.query.construction.where;
 import com.dfaris.query.construction.Query;
 
 public class IndividualWhereClauseBuilder<QueryType extends Query,
-		Parent extends WhereParent<QueryType>>
-		extends AbstractWhereBuilder<Parent,
-		IndividualWhereClauseBuilder<QueryType, Parent>,
-		MultiWhereClauseBuilder<Parent>,
-		ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>>>
+										Parent extends WhereParent<QueryType>>
+		extends AbstractWhereBuilder<QueryType,
+									Parent,
+									IndividualWhereClauseBuilder<QueryType, Parent>,
+									MultiWhereClauseBuilder<QueryType, Parent>,
+									ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>>>
 		implements ParenAppender {
 
 	private WhereClause clause;
@@ -19,17 +20,17 @@ public class IndividualWhereClauseBuilder<QueryType extends Query,
 	}
 
 	@Override
-	public ParenthesizedWhereClauseBuilder<MultiWhereClauseBuilder<Parent>> startParenthesizedGroup() {
+	public ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>> startParenthesizedGroup() {
 		return new ParenthesizedWhereClauseBuilder<>(new MultiWhereClauseBuilder<>(this, null, null));
 	}
 
 	@Override
-	public MultiWhereClauseBuilder<Parent> and() {
+	public MultiWhereClauseBuilder<QueryType, Parent> and() {
 		return new MultiWhereClauseBuilder<>(this, "and");
 	}
 
 	@Override
-	public MultiWhereClauseBuilder<Parent> or() {
+	public MultiWhereClauseBuilder<QueryType, Parent> or() {
 		return new MultiWhereClauseBuilder<>(this, "or");
 	}
 
@@ -41,7 +42,7 @@ public class IndividualWhereClauseBuilder<QueryType extends Query,
 	}
 
 	@Override
-	public Query build() {
+	public QueryType build() {
 		WhereClause finalWhere = buildClause();
 		if (parenGroup != null) finalWhere = new CompoundWhereClause(parenGroup, finalWhere);
 		parent.setWhere(finalWhere);

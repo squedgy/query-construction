@@ -57,15 +57,11 @@ public class SelectQueryTest {
 	public void likeATestOrSomething() {
 		SelectQuery query = select("aDateTime", "aDate", "aTime")
 				.from("anotherTest")
-				.innerJoin("test")
-				.alias("t")
-				.on("testId", "anotherTest", "anotherTestId")
+				.innerJoin("test").alias("t").on("testId", "anotherTest", "anotherTestId")
 				.where()
-				.column("t.testId")
-				.greaterThan(1)
-				.and()
-				.column("t.bool")
-				.notNull()
+					.column("t.testId").greaterThan(1)
+					.and()
+					.column("t.bool").notNull()
 				.build();
 
 		runQuery(query);
@@ -75,23 +71,17 @@ public class SelectQueryTest {
 	public void parenthesis() {
 		SelectQuery query = select("name", "bool", "shortName")
 				.from("test")
-				.build()
 				.where()
-				.startParenthesizedGroup()
-				.column("testId")
-				.equalTo(1)
-				.or()
-				.column("bool")
-				.isTrue()
-				.endParenthesizedGroupOr()
-				.startParenthesizedGroup()
-				.column("name")
-				.equalTo("david")
-				.and()
-				.column("bool")
-				.isFalse()
-				.endParenthesizedGroup()
-				.build()
+					.startParenthesizedGroup()
+						.column("testId").equalTo(1)
+						.or()
+						.column("bool").isTrue()
+					.endParenthesizedGroupOr()
+					.startParenthesizedGroup()
+						.column("name").equalTo("david")
+						.and()
+						.column("bool").isFalse()
+					.endParenthesizedGroup()
 				.build();
 
 		runQuery(query);
@@ -101,21 +91,15 @@ public class SelectQueryTest {
 	public void mixedParenthesis() {
 		SelectQuery query = select("aTableId", "intValue", "textValue")
 				.from("aTable")
-				.build()
 				.where()
-				.startParenthesizedGroup()
-				.column("aTableId")
-				.equalTo(2)
-				.and()
-				.column("intValue")
-				.in(22)
-				.endParenthesizedGroupOr()
-				.column("textValue")
-				.equalTo("different text")
-				.and()
-				.column("aTableId")
-				.greaterThan(0)
-				.build()
+					.startParenthesizedGroup()
+						.column("aTableId").equalTo(2)
+						.and()
+						.column("intValue").in(22)
+					.endParenthesizedGroupOr()
+					.column("textValue").equalTo("different text")
+					.and()
+					.column("aTableId").greaterThan(0)
 				.build();
 
 		runQuery(query);
@@ -125,17 +109,16 @@ public class SelectQueryTest {
 	public void compoundParenthesis() {
 		SelectQuery query = select("*")
 				.from("aTable")
-				.build()
 				.where()
 				.startParenthesizedGroup()
-				.startParenthesizedGroup()
-				.column("aTableId")
-				.greaterThan(0)
-				.endParenthesizedGroupOr()
-				.column("booleanValue")
-				.isTrue()
+					.startParenthesizedGroup()
+						.column("aTableId")
+						.greaterThan(0)
+					.endParenthesizedGroup()
+					.or()
+					.column("booleanValue")
+					.isTrue()
 				.endParenthesizedGroup()
-				.build()
 				.build();
 
 		runQuery(query);
@@ -145,11 +128,10 @@ public class SelectQueryTest {
 	public void join() {
 		SelectQuery query = select("test.testId", "anotherTest.anotherTestId", "aTable.aTableId")
 				.from("test")
-				.join("anotherTest")
-				.on("testId", "test", "testId")
-				.fullJoin("aTable")
-				.on("aTableId", "test", "testId")
-				.build()
+					.join("anotherTest")
+						.on("testId", "test", "testId")
+					.fullJoin("aTable")
+						.on("aTableId", "test", "testId")
 				.build();
 		runQuery(query);
 	}
@@ -158,8 +140,7 @@ public class SelectQueryTest {
 	public void anotherJoin() {
 		SelectQuery query = select("*")
 				.from("test")
-				.crossJoin("aTable")
-				.build()
+					.crossJoin("aTable")
 				.build();
 
 		runQuery(query);
@@ -169,12 +150,10 @@ public class SelectQueryTest {
 	public void bindableTest() {
 		SelectQuery query = select("*")
 				.from("test")
-					.build()
 				.where()
 					.binding()
 					.column("testId")
 					.equalTo("testId")
-					.build()
 				.build();
 		Map<String,Object> binds = new HashMap<>();
 		binds.put("testId", 1);
@@ -185,18 +164,16 @@ public class SelectQueryTest {
 	public void parenthesizedMultiBindableTest() {
 		SelectQuery query = select("*")
 				.from("test")
-					.build()
 				.where()
 					.binding()
 					.startParenthesizedGroup()
-					.column("testId")
-					.in("testIds")
-					.and()
-					.literal()
-					.column("name")
-					.like("%a%")
+						.column("testId")
+						.in("testIds")
+						.and()
+						.literal()
+						.column("name")
+						.like("%a%")
 					.endParenthesizedGroup()
-					.build()
 				.build();
 
 		Map<String, Object> binds = new HashMap<>();
