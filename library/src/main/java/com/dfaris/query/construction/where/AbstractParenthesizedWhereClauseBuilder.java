@@ -1,13 +1,14 @@
 package com.dfaris.query.construction.where;
 
 import com.dfaris.query.construction.Query;
+import com.dfaris.query.construction.structure.ParenedPredicate;
+import com.dfaris.query.construction.structure.Predicate;
 
 public abstract class AbstractParenthesizedWhereClauseBuilder<QueryType extends Query,
 															Parent extends WhereParent<QueryType>,
 															This,
 															AndOrReturn,
-															StartParenReturn,
-															EndParenReturn>
+															StartParenReturn>
 		extends AbstractMultiWhereBuilder<QueryType,
 										Parent,
 										This,
@@ -15,13 +16,9 @@ public abstract class AbstractParenthesizedWhereClauseBuilder<QueryType extends 
 										StartParenReturn> {
 
 
-	AbstractParenthesizedWhereClauseBuilder(Parent parent, WhereClause a, String andOr) { super(parent, a, andOr); }
+	AbstractParenthesizedWhereClauseBuilder(Parent parent, Predicate a, String andOr) { super(parent, a, andOr); }
 
 	AbstractParenthesizedWhereClauseBuilder(Parent parent) { this(parent, null, null); }
-
-	public abstract EndParenReturn endParenthesizedGroupAnd();
-
-	public abstract EndParenReturn endParenthesizedGroupOr();
 
 	public abstract Parent endParenthesizedGroup();
 

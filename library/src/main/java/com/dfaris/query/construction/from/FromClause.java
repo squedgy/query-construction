@@ -5,7 +5,7 @@ import com.dfaris.query.construction.from.join.JoinClause;
 
 import java.util.List;
 
-public class FromClause extends Clause {
+public class FromClause implements Clause {
 
 	private final String table;
 	private final String alias;

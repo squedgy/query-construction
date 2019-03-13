@@ -1,6 +1,7 @@
 package com.dfaris.query.construction.where;
 
 import com.dfaris.query.construction.Query;
+import com.dfaris.query.construction.structure.ParenedPredicate;
 
 public class IndividualWhereClauseBuilder<QueryType extends Query,
 										Parent extends WhereParent<QueryType>>
@@ -8,11 +9,9 @@ public class IndividualWhereClauseBuilder<QueryType extends Query,
 									Parent,
 									IndividualWhereClauseBuilder<QueryType, Parent>,
 									MultiWhereClauseBuilder<QueryType, Parent>,
-									ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>>>
-		implements ParenAppender {
+									ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>>> {
 
 	private WhereClause clause;
-	private ParenGroup parenGroup;
 
 	public IndividualWhereClauseBuilder(Parent parent) {
 		super(parent);
@@ -39,20 +38,6 @@ public class IndividualWhereClauseBuilder<QueryType extends Query,
 				operator != null &&
 				constants != null &&
 				constants.size() > 0;
-	}
-
-	@Override
-	public QueryType build() {
-		WhereClause finalWhere = buildClause();
-		if (parenGroup != null) finalWhere = new CompoundWhereClause(parenGroup, finalWhere);
-		parent.setWhere(finalWhere);
-		return parent.build();
-	}
-
-	@Override
-	public void addWhere(ParenGroup clause) {
-		if (this.parenGroup == null) parenGroup = clause;
-		else this.parenGroup = new ParenGroup(parenGroup, clause);
 	}
 
 }

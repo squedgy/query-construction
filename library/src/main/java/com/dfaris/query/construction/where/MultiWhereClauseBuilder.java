@@ -1,6 +1,7 @@
 package com.dfaris.query.construction.where;
 
 import com.dfaris.query.construction.Query;
+import com.dfaris.query.construction.structure.Predicate;
 
 public class MultiWhereClauseBuilder<QueryType extends Query,
 									Parent extends WhereParent<QueryType>>
@@ -8,16 +9,14 @@ public class MultiWhereClauseBuilder<QueryType extends Query,
 										Parent,
 										MultiWhereClauseBuilder<QueryType, Parent>,
 										MultiWhereClauseBuilder<QueryType, Parent>,
-										ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>>> {
-	private String andOr;
-	private WhereClause a;
-	private ParenGroup parenGroup;
+										ParenthesizedWhereClauseBuilder<QueryType, MultiWhereClauseBuilder<QueryType, Parent>>>
+		implements WhereParent<QueryType> {
 
 	MultiWhereClauseBuilder(IndividualWhereClauseBuilder<QueryType, Parent> builder, String andOr) {
 		this(builder, builder.buildClause(), andOr);
 	}
 
-	MultiWhereClauseBuilder(AbstractWhereBuilder<QueryType, Parent, ?, ?, ?> builder, WhereClause a, String andOr) {
+	MultiWhereClauseBuilder(AbstractWhereBuilder<QueryType, Parent, ?, ?, ?> builder, Predicate a, String andOr) {
 		super(builder.parent, a, andOr);
 		this.binding = builder.binding;
 		this.a = a;
@@ -42,27 +41,13 @@ public class MultiWhereClauseBuilder<QueryType extends Query,
 	}
 
 	public QueryType build() {
-		WhereClause finalWhere;
-		if (this.andOr != null) {
-			finalWhere = buildClause();
-		} else {
-			if (a == null) {
-				if (parenGroup != null) {
-					finalWhere = parenGroup;
-				} else {
-					finalWhere = buildClause();
-				}
-			} else {
-				finalWhere = a;
-			}
-		}
-		if (this.parenGroup != null) {
-			if (finalWhere != null)
-				finalWhere = new CompoundWhereClause(parenGroup.getClause(), parenGroup.getFollowedBy(), finalWhere);
-			else finalWhere = parenGroup;
-		}
-		parent.setWhere(finalWhere);
+		parent.setWhere(buildClause());
 		return parent.build();
 	}
 
+	@Override
+	public void setWhere(Predicate clause) {
+		if(a == null || andOr == null) a = clause;
+		else a = new CompoundWhereClause(a, andOr, clause);
+	}
 }

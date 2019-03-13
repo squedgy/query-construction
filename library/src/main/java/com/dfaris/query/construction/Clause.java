@@ -2,27 +2,7 @@ package com.dfaris.query.construction;
 
 import java.util.List;
 
-public abstract class Clause extends Stringable {
-	/**
-	 * An overriden to string that is a formatted clause
-	 * Ex.
-	 * <pre>
-	 *     person_id = 4 or
-	 *     person_fk in (1,2,3,4,5,6,7,8)
-	 *     (person_id = 4 or person_fk in (1,2,3,4,5,6,7,8)) and
-	 *     person_id = ?
-	 *     person_fk in ? and
-	 *     person p join address a on p.address_id = a.address_id
-	 *     p.person_id as id, a.address as address, a.address2 as 'line 2'
-	 *     p.person_id desc, a.address asc
-	 *     0, 1, 2
-	 *     p.person_id
-	 *     *
-	 * </pre>
-	 *
-	 * @return a formatted clause String
-	 */
-	public abstract String toString();
+public interface Clause{
 
 	public abstract String getClauseStarter();
 

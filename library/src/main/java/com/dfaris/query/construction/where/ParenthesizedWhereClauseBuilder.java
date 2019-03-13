@@ -1,6 +1,8 @@
 package com.dfaris.query.construction.where;
 
 import com.dfaris.query.construction.Query;
+import com.dfaris.query.construction.structure.ParenedPredicate;
+import com.dfaris.query.construction.structure.Predicate;
 
 public class ParenthesizedWhereClauseBuilder<QueryType extends Query,
 											Parent extends WhereParent<QueryType>>
@@ -8,15 +10,14 @@ public class ParenthesizedWhereClauseBuilder<QueryType extends Query,
 														Parent,
 														ParenthesizedWhereClauseBuilder<QueryType, Parent>,
 														ParenthesizedWhereClauseBuilder<QueryType, Parent>,
-														ParenthesizedWhereClauseBuilder<QueryType, ParenthesizedWhereClauseBuilder<QueryType, Parent>>,
-														Parent> {
+														ParenthesizedWhereClauseBuilder<QueryType, ParenthesizedWhereClauseBuilder<QueryType, Parent>>>
+		implements WhereParent<QueryType> {
 
 	ParenthesizedWhereClauseBuilder(Parent parent) {
 		super(parent, null, null);
 		this.refe = this;
 		if(parent instanceof AbstractWhereBuilder) binding = ((AbstractWhereBuilder) parent).binding;
 	}
-
 
 	@Override
 	public ParenthesizedWhereClauseBuilder<QueryType, Parent> and() {
@@ -39,47 +40,28 @@ public class ParenthesizedWhereClauseBuilder<QueryType extends Query,
 
 	@Override
 	public Parent endParenthesizedGroup() {
-		WhereClause finalClause = buildClause();
-		if (this.group != null) {
-			if (this.group.getFollowedBy() != null)
-				finalClause = new CompoundWhereClause(new ParenGroup(group.getClause(), null), group.getFollowedBy(), finalClause);
-			else if (finalClause == null) finalClause = group;
-		}
-		this.group = new ParenGroup(finalClause, null);
-		parent.setWhere(group);
-		return parent;
-	}
-
-	@Override
-	public Parent endParenthesizedGroupAnd() {
-		setParentWhere("and");
-		return parent;
-	}
-
-	@Override
-	public Parent endParenthesizedGroupOr() {
-		setParentWhere("or");
+		Predicate finalClause = buildClause();
+		parent.setWhere(new ParenedPredicate(finalClause));
 		return parent;
 	}
 
 	@Override
 	public QueryType build() {
-		parent.setWhere(group);
+		parent.setWhere(a);
 		return parent.build();
 	}
 
 	private void setParentWhere(String andOr) {
-		ParenGroup clause = new ParenGroup(buildClause(), andOr);
-		if (group != null) {
-			clause = new ParenGroup(group, clause);
-		}
-		parent.setWhere(clause);
+		ParenedPredicate clause = new ParenedPredicate(buildClause());
+		parent.setWhere(new IndividualWhereClause(clause));
 	}
 
 	@Override
-	public void setWhere(WhereClause clause) {
-		if (clause instanceof ParenGroup) this.group = (ParenGroup) clause;
-		else
-			throw new IllegalArgumentException("WhereClause must be a ParenGroup for ParenthesizedWhereClauseBuilder!");
+	public void setWhere(Predicate clause) {
+		if(a == null) a = clause;
+		else if (andOr != null) {
+			a = new CompoundWhereClause(a, andOr, clause);
+			andOr = null;
+		} else throw new IllegalStateException("Builder doesn't know what ");
 	}
 }

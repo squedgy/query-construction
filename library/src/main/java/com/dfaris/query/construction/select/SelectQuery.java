@@ -1,12 +1,15 @@
 package com.dfaris.query.construction.select;
 
+import com.dfaris.query.construction.Clause;
 import com.dfaris.query.construction.Query;
-import com.dfaris.query.construction.QueryBuilder;
 import com.dfaris.query.construction.from.FromBuilder;
 import com.dfaris.query.construction.from.FromClause;
 import com.dfaris.query.construction.from.FromParent;
 import com.dfaris.query.construction.group.GroupByBuilder;
+import com.dfaris.query.construction.group.GroupByClause;
 import com.dfaris.query.construction.group.GroupByParent;
+import com.dfaris.query.construction.having.HavingClause;
+import com.dfaris.query.construction.structure.Predicate;
 import com.dfaris.query.construction.where.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,15 +23,21 @@ public class SelectQuery extends Query {
 
 	private final String[] columns;
 	private final FromClause from;
-	private final Optional<List<String>> groupBy;
-	private final Optional<WhereClause> where;
+	private final List<Optional<? extends Clause>> clauses;
 	private static final Logger log = LoggerFactory.getLogger(SelectQuery.class);
 
-	SelectQuery(String[] columns, FromClause from, Optional<WhereClause> where, Optional<List<String>> groupBy) {
+	SelectQuery(String[] columns,
+				FromClause from,
+				Optional<Predicate> where,
+				Optional<GroupByClause> groupBy,
+				Optional<HavingClause> having) {
 		this.columns = columns;
-		this.groupBy = groupBy;
-		this.where = where;
 		this.from = from;
+		this.clauses = Arrays.asList(
+			where,
+			groupBy,
+			having
+		);
 	}
 
 	@Override
@@ -42,14 +51,13 @@ public class SelectQuery extends Query {
 				.append(from.getClauseStarter())
 				.append(from.toString());
 
-		where.ifPresent(w -> query.append(w.getClauseStarter())
-				.append(w.toString())
-				.append(' '));
-
-		groupBy.ifPresent(o -> query.append("GROUP BY ")
-				.append(String.join(",", o))
-				.append(' ')
-		);
+		clauses.forEach(optional -> {
+			optional.ifPresent(clause -> {
+				query.append(clause.getClauseStarter())
+						.append(clause.toString())
+						.append(' ');
+			});
+		});
 
 		return query.toString();
 	}
@@ -62,8 +70,9 @@ public class SelectQuery extends Query {
 
 		protected final String[] columns;
 		protected FromClause from;
-		protected WhereClause where;
-		protected List<String> groupBy;
+		protected Predicate where;
+		protected GroupByClause groupBy;
+		protected HavingClause having;
 
 		private SelectQueryBuilder(String[] columns) {
 			this.columns = columns;
@@ -96,13 +105,19 @@ public class SelectQuery extends Query {
 			return new GroupByBuilder(this, columns);
 		}
 
+		public GroupByBuilder groupBy() {
+			return new GroupByBuilder(this, null);
+		}
+
+
+
 		@Override
 		public SelectQuery build() {
 			log.debug("columns: " + Arrays.toString(columns));
 			log.debug("from: " + from);
 			log.debug("where: " + where);
 			log.debug("group: " + groupBy);
-			return new SelectQuery(columns, from, Optional.ofNullable(where), Optional.ofNullable(groupBy));
+			return new SelectQuery(columns, from, Optional.ofNullable(where), Optional.ofNullable(groupBy), Optional.ofNullable(having));
 		}
 
 		@Override
@@ -111,20 +126,15 @@ public class SelectQuery extends Query {
 		}
 
 		@Override
-		public void setWhere(WhereClause clause) {
+		public void setWhere(Predicate clause) {
 			this.where = clause;
 		}
 
 		@Override
-		public void setGroupBy(List<String> columns) {
+		public void setGroupBy(GroupByClause columns) {
 			this.groupBy = columns;
 		}
 
-		@Override
-		public void addGroup(String group) {
-			if(groupBy == null) groupBy = new LinkedList<>();
-			groupBy.add(group);
-		}
 	}
 
 }

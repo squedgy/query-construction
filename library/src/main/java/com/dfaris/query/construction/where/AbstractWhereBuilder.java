@@ -1,25 +1,27 @@
 package com.dfaris.query.construction.where;
 
-import com.dfaris.query.construction.Query;
-import com.dfaris.query.construction.QueryBuilder;
-import com.dfaris.query.construction.ValueConverters;
-import javafx.util.Builder;
-
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
+import com.dfaris.query.construction.Query;
+import com.dfaris.query.construction.ValueConverters;
+import com.dfaris.query.construction.structure.Predicate;
+
+import static com.dfaris.query.construction.ValueConverters.*;
+
 public abstract class AbstractWhereBuilder<QueryType extends Query,
-		Parent extends WhereParent<QueryType>,
-		This,
-		AndOrReturn,
-		ParenReturn>
-		implements WhereParent<QueryType> {
+										Parent extends WhereParent<QueryType>,
+										This,
+										AndOrReturn,
+										ParenReturn> {
 
 	protected final Parent parent;
 	protected String column;
 	protected String operator;
 	protected List<String> constants;
-	protected ParenGroup group;
 	protected boolean binding;
 	protected This refe;
 
@@ -138,7 +140,7 @@ public abstract class AbstractWhereBuilder<QueryType extends Query,
 	}
 
 	protected String convertObjectToString(Object o) {
-		if(this.isBinding()) return ValueConverters.getBindingValueOf(o);
+		if(this.isBinding()) return getBindingValueOf(o);
 		return ValueConverters.getSqlValueOf(o);
 	}
 
@@ -157,14 +159,6 @@ public abstract class AbstractWhereBuilder<QueryType extends Query,
 		return column != null && operator != null && constants.size() > 0;
 	}
 
-	@Override
-	public void setWhere(WhereClause clause) {
-		if (clause instanceof ParenGroup) {
-			if (group == null) group = (ParenGroup) clause;
-			else group = new ParenGroup(group, (ParenGroup) clause);
-		}
-	}
-
 	public final boolean isBinding() { return binding; }
 
 	public final This binding() {
@@ -177,12 +171,17 @@ public abstract class AbstractWhereBuilder<QueryType extends Query,
 		return refe;
 	}
 
-	protected WhereClause buildClause() {
-		WhereClause ret = new IndividualWhereClause(column, operator, constants);
+	protected Predicate buildClause() {
+		WhereClause ret = new IndividualWhereClause(column, operator, String.join(",", constants));
 		column = null;
 		operator = null;
 		constants = new LinkedList<>();
 		return ret;
+	}
+
+	public QueryType build() {
+		parent.setWhere(buildClause());
+		return parent.build();
 	}
 
 }

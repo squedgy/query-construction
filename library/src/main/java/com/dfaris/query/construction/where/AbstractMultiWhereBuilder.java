@@ -1,14 +1,15 @@
 package com.dfaris.query.construction.where;
 
 import com.dfaris.query.construction.Query;
+import com.dfaris.query.construction.structure.Predicate;
 
 public abstract class AbstractMultiWhereBuilder<QueryType extends Query, Parent extends WhereParent<QueryType>, This, AndOrReturn, StartParenReturn>
 		extends AbstractWhereBuilder<QueryType, Parent, This, AndOrReturn, StartParenReturn> {
 
 	protected String andOr;
-	protected WhereClause a;
+	protected Predicate a;
 
-	AbstractMultiWhereBuilder(Parent parent, WhereClause a, String andOr) {
+	AbstractMultiWhereBuilder(Parent parent, Predicate a, String andOr) {
 		super(parent);
 		this.a = a;
 		this.andOr = andOr;
@@ -16,28 +17,21 @@ public abstract class AbstractMultiWhereBuilder<QueryType extends Query, Parent 
 
 	@Override
 	protected boolean canBuildClause() {
-		return super.canBuildClause() && andOr != null && (group != null || a != null);
+		return super.canBuildClause() && andOr != null && a != null;
 	}
 
-	protected WhereClause buildClause() {
-		WhereClause ret;
+	protected Predicate buildClause() {
+		Predicate ret;
 		if (!canBuildClause()) {
-			if (group != null && group.getFollowedBy() == null) ret = group;
-			else if (super.canBuildClause()) ret = super.buildClause();
+			if (super.canBuildClause()) ret = super.buildClause();
+			else if(a != null) ret = a;
 			else throw new IllegalStateException("Cannot build clause and group either doesn't exist or must be followed by another clause");
 		} else {
-			if (a == null && group != null) {
-				ret = new CompoundWhereClause(group, super.buildClause());
-				group = null;
-			} else {
-				ret = new CompoundWhereClause(a, andOr, super.buildClause());
-				if (group != null) {
-					ret = new CompoundWhereClause(group, ret);
-				}
-			}
+			ret = new CompoundWhereClause(a, andOr, super.buildClause());
+
 		}
 		this.andOr = null;
-		this.group = null;
+		this.a = null;
 		return ret;
 	}
 

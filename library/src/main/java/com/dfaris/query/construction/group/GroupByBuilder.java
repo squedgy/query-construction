@@ -9,26 +9,26 @@ import com.dfaris.query.construction.select.SelectQuery.SelectQueryBuilder;
 
 public class GroupByBuilder extends SelectQueryBuilder {
 
-    private final List<String> columns = new LinkedList<>();
+    private GroupByClause clause = new GroupByClause(new LinkedList<>());
 
     public GroupByBuilder(SelectQueryBuilder parent, String[] columns){
         super(parent);
-        this.columns.addAll(Arrays.asList(columns));
+        if(columns != null) clause.addAll(Arrays.asList(columns));
+        setGroupBy(clause);
     }
 
     public GroupByBuilder addGroupingColumn(String column) {
-        this.columns.add(column);
+        clause.addColumn(column);
         return this;
     }
 
     public GroupByBuilder setGroupingColumns(String... columns) {
-        this.columns.clear();
-        this.columns.addAll(Arrays.asList(columns));
+        clause = new GroupByClause(Arrays.asList(columns));
+        setGroupBy(clause);
         return this;
     }
 
     public SelectQuery build() {
-        setGroupBy(columns);
         return super.build();
     }
 

@@ -2,7 +2,7 @@ package com.dfaris.query.construction.from.join;
 
 import com.dfaris.query.construction.Clause;
 
-public abstract class JoinClause extends Clause {
+public abstract class JoinClause implements Clause {
 
 	@Override
 	public String getClauseStarter() {
