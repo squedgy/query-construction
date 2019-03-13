@@ -46,7 +46,7 @@ public class SelectQuery extends Query {
 				.append(w.toString())
 				.append(' '));
 
-		groupBy.ifPresent(o -> query.append("ORDER BY ")
+		groupBy.ifPresent(o -> query.append("GROUP BY ")
 				.append(String.join(",", o))
 				.append(' ')
 		);

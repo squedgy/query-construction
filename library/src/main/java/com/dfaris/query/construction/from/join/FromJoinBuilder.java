@@ -1,9 +1,9 @@
 package com.dfaris.query.construction.from.join;
 
-import com.dfaris.query.construction.Query;
 import com.dfaris.query.construction.from.FromBuilder;
-import com.dfaris.query.construction.from.FromParent;
 import com.dfaris.query.construction.select.SelectQuery;
+
+import static com.dfaris.query.construction.from.join.JoinClause.Type.*;
 
 public class FromJoinBuilder extends FromBuilder {
 
@@ -16,6 +16,7 @@ public class FromJoinBuilder extends FromBuilder {
 
 	public FromJoinBuilder(FromBuilder builder, JoinClause.Type type, String table, String alias){
 		super(builder);
+		setFrom(null);
 		this.type = type;
 		this.table(table, alias);
 	}
@@ -31,7 +32,7 @@ public class FromJoinBuilder extends FromBuilder {
 	public FromJoinBuilder table(String name) {
 		this.table = name;
 		if (alias == null) {
-			this.alias = name;
+			alias(name);
 		}
 		return this;
 	}
@@ -43,10 +44,18 @@ public class FromJoinBuilder extends FromBuilder {
 
 	public FromJoinBuilder alias(String alias) {
 		this.alias = alias;
+		if(type == CROSS) {
+			addJoin(buildClause());
+			this.table = null;
+			this.alias = null;
+		}
 		return this;
 	}
 
 	public FromBuilder on(String column, String otherTableAlias, String onColumn) {
+		if(type == CROSS) {
+			throw new IllegalStateException("Cross joins don't have on statements!");
+		}
 		this.tableColumn = column;
 		this.otherTableAlias = otherTableAlias;
 		this.onColumn = onColumn;
@@ -65,15 +74,15 @@ public class FromJoinBuilder extends FromBuilder {
 	}
 
 	protected final JoinClause buildClause() {
-		if (type == JoinClause.Type.CROSS) {
-			return new CrossJoin(table);
-		} else if (type == JoinClause.Type.INNER) {
+		if (type == CROSS) {
+			return new CrossJoin(table, alias);
+		} else if (type == INNER) {
 			return new InnerJoin(table, alias, tableColumn, otherTableAlias, onColumn);
-		} else if (type == JoinClause.Type.LEFT) {
+		} else if (type == LEFT) {
 			return new LeftJoin(table, alias, tableColumn, otherTableAlias, onColumn);
-		} else if (type == JoinClause.Type.RIGHT) {
+		} else if (type == RIGHT) {
 			return new RightJoin(table, alias, tableColumn, otherTableAlias, onColumn);
-		} else if (type == JoinClause.Type.FULL) {
+		} else if (type == FULL) {
 			return new FullJoin(table, alias, tableColumn, otherTableAlias, onColumn);
 		}
 

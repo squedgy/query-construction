@@ -142,6 +142,11 @@ public abstract class AbstractWhereBuilder<QueryType extends Query,
 		return ValueConverters.getSqlValueOf(o);
 	}
 
+	public Parent continueBuilding() {
+		parent.setWhere(buildClause());
+		return parent;
+	}
+
 	public abstract ParenReturn startParenthesizedGroup();
 
 	public abstract AndOrReturn and();

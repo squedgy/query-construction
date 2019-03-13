@@ -30,6 +30,7 @@ public class FromBuilder extends SelectQueryBuilder {
 		this.joins=clause;
 		this.table=table;
 		this.alias=alias;
+		setFrom(new FromClause(table, alias, clause));
 	}
 	
 	public FromBuilder(FromBuilder builder) {

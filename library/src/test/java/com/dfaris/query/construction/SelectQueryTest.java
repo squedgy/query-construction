@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,6 +29,11 @@ public class SelectQueryTest {
 
 	@BeforeClass
 	public static void before() throws Exception {
+		try {
+			log.info("drop db");
+			Process p = new ProcessBuilder(new String[] {"/bin/sh", "-c", "dropdb test-db"}).start();
+			p.waitFor();
+		} catch (IOException e) { }
 		Process p = new ProcessBuilder(new String[] {"/bin/sh", "-c", "createdb test-db"}).start();
 		p.waitFor();
 		if(p.exitValue() != 0) {
@@ -48,7 +54,7 @@ public class SelectQueryTest {
 
 	@AfterClass
 	public static void after() throws Exception {
-		log.info("after");
+		log.info("drop db");
 		Process p = new ProcessBuilder(new String[] {"/bin/sh", "-c", "dropdb test-db"}).start();
 		p.waitFor();
 	}
@@ -183,6 +189,20 @@ public class SelectQueryTest {
 		runBoundQuery(query, binds);
 
 		FunStuff.main(null);
+
+	}
+
+	@Test
+	public void groupBy() {
+		SelectQuery query = select("t.bool", "COUNT(t.name) as names")
+				.from("test", "t")
+				.where()
+					.column("testId").greaterThan(1)
+					.continueBuilding()
+				.groupBy("bool")
+				.build();
+
+		runQuery(query);
 
 	}
 
