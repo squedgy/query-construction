@@ -9,8 +9,7 @@ public class FunStuff {
 	public static void main(String[] args) {
 		Query q = select("t.name", "t.age")
 				.from("People", "t")
-				.fullJoin("Eggs", "e")
-				.on("personId", "t", "personId")
+					.fullJoin("Eggs", "e").on("personId", "t", "personId")
 				.where()
 					.column("t.age").greaterThan(18)
 					.and()
