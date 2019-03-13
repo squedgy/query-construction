@@ -73,20 +73,8 @@ public class FromJoinBuilder extends FromBuilder {
 		return this;
 	}
 
-	protected final JoinClause buildClause() {
-		if (type == CROSS) {
-			return new CrossJoin(table, alias);
-		} else if (type == INNER) {
-			return new InnerJoin(table, alias, tableColumn, otherTableAlias, onColumn);
-		} else if (type == LEFT) {
-			return new LeftJoin(table, alias, tableColumn, otherTableAlias, onColumn);
-		} else if (type == RIGHT) {
-			return new RightJoin(table, alias, tableColumn, otherTableAlias, onColumn);
-		} else if (type == FULL) {
-			return new FullJoin(table, alias, tableColumn, otherTableAlias, onColumn);
-		}
-
-		return null;
+	public final JoinClause buildClause() {
+		return type.build(table, alias, tableColumn, otherTableAlias, onColumn);
 	}
 
 	public SelectQuery build() {

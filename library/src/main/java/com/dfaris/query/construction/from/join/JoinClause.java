@@ -10,11 +10,25 @@ public abstract class JoinClause extends Clause {
 	}
 
 	public enum Type {
-		CROSS,
-		INNER,
-		LEFT,
-		RIGHT,
-		FULL;
+		CROSS((t,a,c,o,oc) -> new CrossJoin(t, a)),
+		INNER(InnerJoin::new),
+		LEFT(LeftJoin::new),
+		RIGHT(RightJoin::new),
+		FULL(FullJoin::new);
+
+		private final JoinBuilder builder;
+		Type(JoinBuilder builder) {
+			this.builder = builder;
+		}
+
+		public JoinClause build(String table, String alias, String column, String otherTableAlias, String otherTableColumn) {
+			return builder.build(table, alias, column, otherTableAlias, otherTableColumn);
+		}
+	}
+
+	@FunctionalInterface
+	private static interface JoinBuilder {
+		JoinClause build(String table, String alias, String column, String otherTableAlias, String otherTableColumn);
 	}
 
 }

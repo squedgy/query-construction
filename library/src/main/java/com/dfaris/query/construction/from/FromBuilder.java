@@ -109,11 +109,12 @@ public class FromBuilder extends SelectQueryBuilder {
 	}
 
 	public FromBuilder crossJoin(String table) {
-		return new FromJoinBuilder(this, CROSS, table).on(null, null, null);
+		return crossJoin(table, table);
 	}
 
 	public FromBuilder crossJoin(String table, String alias) {
-		return new FromJoinBuilder(this, CROSS, table).alias(alias).on(null, null, null);
+		new FromJoinBuilder(this, CROSS, table, alias);
+		return this;
 	}
 
 	public void addJoin(JoinClause join) {
