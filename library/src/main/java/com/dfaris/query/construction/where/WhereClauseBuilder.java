@@ -4,6 +4,8 @@ import com.dfaris.query.construction.Query;
 import com.dfaris.query.construction.structure.predicate.MultiPredicateBuilder;
 import com.dfaris.query.construction.structure.predicate.Predicate;
 
+import java.util.LinkedList;
+
 public abstract class WhereClauseBuilder<QueryType extends Query,
 											Parent extends WhereParent<QueryType>,
 											This extends WhereClauseBuilder,
@@ -47,7 +49,7 @@ public abstract class WhereClauseBuilder<QueryType extends Query,
 	}
 
 	public void clear() {
-		this.constants.clear();
+		this.constants = new LinkedList<>();
 		this.operator = null;
 		this.column = null;
 		this.andOr = null;

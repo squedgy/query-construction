@@ -15,9 +15,7 @@ public class DefaultWhereClauseBuilder<QueryType extends Query, Parent extends W
 		this.refe = this;
 	}
 
-	DefaultWhereClauseBuilder(Parent parent) {
-		super(parent);
-	}
+	DefaultWhereClauseBuilder(Parent parent) { this(parent, null, null); }
 
 	@Override
 	public DefaultWhereClauseBuilder<QueryType, Parent> and() {
@@ -33,6 +31,6 @@ public class DefaultWhereClauseBuilder<QueryType extends Query, Parent extends W
 
 	@Override
 	public ParenthesizedWhereClauseBuilder<QueryType, DefaultWhereClauseBuilder<QueryType, Parent>> startParenthesizedGroup() {
-		return null;
+		return new ParenthesizedWhereClauseBuilder<>(this);
 	}
 }
