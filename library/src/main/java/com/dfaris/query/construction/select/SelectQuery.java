@@ -9,13 +9,12 @@ import com.dfaris.query.construction.group.GroupByBuilder;
 import com.dfaris.query.construction.group.GroupByClause;
 import com.dfaris.query.construction.group.GroupByParent;
 import com.dfaris.query.construction.having.HavingClause;
-import com.dfaris.query.construction.structure.Predicate;
+import com.dfaris.query.construction.structure.predicate.Predicate;
 import com.dfaris.query.construction.where.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,6 +82,7 @@ public class SelectQuery extends Query {
 			this.from = builder.from;
 			this.where = builder.where;
 			this.groupBy = builder.groupBy;
+			this.having = builder.having;
 		}
 
 		public FromBuilder from() {
@@ -97,7 +97,7 @@ public class SelectQuery extends Query {
 			return new FromBuilder(this, table, alias);
 		}
 
-		public IndividualWhereClauseBuilder<SelectQuery, SelectQueryBuilder> where() {
+		public DefaultWhereClauseBuilder<SelectQuery, SelectQueryBuilder> where() {
 			return WhereClause.where(this);
 		}
 
@@ -126,7 +126,7 @@ public class SelectQuery extends Query {
 		}
 
 		@Override
-		public void setWhere(Predicate clause) {
+		public void setPredicate(Predicate clause) {
 			this.where = clause;
 		}
 

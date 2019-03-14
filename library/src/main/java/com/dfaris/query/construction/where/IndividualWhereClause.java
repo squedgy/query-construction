@@ -1,6 +1,6 @@
 package com.dfaris.query.construction.where;
 
-import com.dfaris.query.construction.structure.Predicate;
+import com.dfaris.query.construction.structure.predicate.Predicate;
 
 public class IndividualWhereClause extends WhereClause {
 

@@ -1,4 +1,4 @@
-package com.dfaris.query.construction.structure;
+package com.dfaris.query.construction.structure.predicate;
 
 public class ParenedPredicate extends Predicate{
 
