@@ -3,13 +3,14 @@ package com.dfaris.query.construction.structure.predicate;
 import java.util.LinkedList;
 
 public abstract class MultiPredicateBuilder<This extends MultiPredicateBuilder,
+									PredicateType extends Predicate,
 									StartParenReturn>
-		extends IndividualPredicateBuilder<This, StartParenReturn>{
+		extends IndividualPredicateBuilder<This, PredicateType>{
 
 	protected String andOr;
-	protected Predicate a;
+	protected PredicateType a;
 
-	public MultiPredicateBuilder(Predicate a, String andOr) {
+	public MultiPredicateBuilder(PredicateType a, String andOr) {
 		this.a = a;
 		this.andOr = andOr;
 	}
@@ -26,7 +27,7 @@ public abstract class MultiPredicateBuilder<This extends MultiPredicateBuilder,
 		return super.canBuildIndividualClause() && andOr != null && a != null;
 	}
 
-	protected abstract Predicate buildCompoundClause();
+	protected abstract PredicateType buildCompoundClause();
 
 	public This and() {
 		a = buildCompoundClause();

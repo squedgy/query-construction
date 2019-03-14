@@ -8,8 +8,11 @@ import com.dfaris.query.construction.from.FromParent;
 import com.dfaris.query.construction.group.GroupByBuilder;
 import com.dfaris.query.construction.group.GroupByClause;
 import com.dfaris.query.construction.group.GroupByParent;
+import com.dfaris.query.construction.having.DefaultHavingBuilder;
 import com.dfaris.query.construction.having.HavingClause;
+import com.dfaris.query.construction.having.HavingParent;
 import com.dfaris.query.construction.structure.predicate.Predicate;
+import com.dfaris.query.construction.structure.predicate.PredicateParent;
 import com.dfaris.query.construction.where.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +32,7 @@ public class SelectQuery extends Query {
 				FromClause from,
 				Optional<Predicate> where,
 				Optional<GroupByClause> groupBy,
-				Optional<HavingClause> having) {
+				Optional<Predicate> having) {
 		this.columns = columns;
 		this.from = from;
 		this.clauses = Arrays.asList(
@@ -65,13 +68,13 @@ public class SelectQuery extends Query {
 		return new SelectQueryBuilder(columns);
 	}
 
-	public static class SelectQueryBuilder implements FromParent, WhereParent<SelectQuery>, GroupByParent {
+	public static class SelectQueryBuilder implements FromParent, WhereParent<SelectQuery>, GroupByParent, HavingParent {
 
 		protected final String[] columns;
 		protected FromClause from;
 		protected Predicate where;
 		protected GroupByClause groupBy;
-		protected HavingClause having;
+		protected Predicate having;
 
 		private SelectQueryBuilder(String[] columns) {
 			this.columns = columns;
@@ -109,7 +112,7 @@ public class SelectQuery extends Query {
 			return new GroupByBuilder(this, null);
 		}
 
-
+		public DefaultHavingBuilder having() { return HavingClause.having(this); }
 
 		@Override
 		public SelectQuery build() {
@@ -117,6 +120,7 @@ public class SelectQuery extends Query {
 			log.debug("from: " + from);
 			log.debug("where: " + where);
 			log.debug("group: " + groupBy);
+			log.debug("having: " + having);
 			return new SelectQuery(columns, from, Optional.ofNullable(where), Optional.ofNullable(groupBy), Optional.ofNullable(having));
 		}
 
@@ -127,7 +131,8 @@ public class SelectQuery extends Query {
 
 		@Override
 		public void setPredicate(Predicate clause) {
-			this.where = clause;
+			if(clause instanceof WhereClause) this.where = clause;
+			if(clause instanceof HavingClause) this.having = clause;
 		}
 
 		@Override

@@ -1,14 +1,24 @@
 package com.dfaris.query.construction.having;
 
-import com.dfaris.query.construction.Query;
-import com.dfaris.query.construction.select.SelectQuery;
-import com.dfaris.query.construction.structure.predicate.Predicate;
-import com.dfaris.query.construction.structure.predicate.PredicateParent;
+import com.dfaris.query.construction.structure.predicate.IndividualPredicateBuilder;
 
-public class ParenthesizedHavingBuilder extends HavingBuilder {
+public class ParenthesizedHavingBuilder<Parent extends HavingParent>
+		extends HavingClauseBuilder<Parent, ParenthesizedHavingBuilder<Parent>, ParenthesizedHavingBuilder<ParenthesizedHavingBuilder<Parent>>> {
 
-	public ParenthesizedHavingBuilder(SelectQuery.SelectQueryBuilder parent, Predicate a, String andOr) {
-		super(a, andOr);
+	public ParenthesizedHavingBuilder(Parent parent) {
+		super(parent, null, null);
+		this.refe = this;
+		if(parent instanceof IndividualPredicateBuilder) binding = ((IndividualPredicateBuilder)parent).isBinding();
+	}
+
+	@Override
+	public ParenthesizedHavingBuilder<ParenthesizedHavingBuilder<Parent>> startParenthesizedGroup() {
+		return new ParenthesizedHavingBuilder<>(this);
+	}
+
+	public Parent endParenthesizedGroup() {
+		parent.setPredicate(buildCompoundClause());
+		return parent;
 	}
 
 }

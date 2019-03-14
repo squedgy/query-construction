@@ -208,6 +208,18 @@ public class SelectQueryTest {
 
 	}
 
+	@Test
+	public void having() {
+		SelectQuery query = select("t.bool", "COUNT(t.name) as names")
+				.from("test", "t")
+				.groupBy("t.bool")
+				.having()
+					.column("COUNT(t.name)").greaterThan(2)
+				.build();
+
+		runQuery(query);
+	}
+
 	private void runBoundQuery(Query query, Map<String,Object> binds) {
 		log.info(query.toString());
 		jdbi.withHandle(handle -> {

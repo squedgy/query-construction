@@ -10,24 +10,12 @@ public class DefaultWhereClauseBuilder<QueryType extends Query, Parent extends W
 									ParenthesizedWhereClauseBuilder<QueryType, DefaultWhereClauseBuilder<QueryType, Parent>>>{
 
 
-	DefaultWhereClauseBuilder(Parent parent, Predicate a, String andOr) {
+	DefaultWhereClauseBuilder(Parent parent, WhereClause a, String andOr) {
 		super(parent, a, andOr);
 		this.refe = this;
 	}
 
 	DefaultWhereClauseBuilder(Parent parent) { this(parent, null, null); }
-
-	@Override
-	public DefaultWhereClauseBuilder<QueryType, Parent> and() {
-		a = buildCompoundClause();
-		return super.and();
-	}
-
-	@Override
-	public DefaultWhereClauseBuilder<QueryType, Parent> or() {
-		a = buildCompoundClause();
-		return super.or();
-	}
 
 	@Override
 	public ParenthesizedWhereClauseBuilder<QueryType, DefaultWhereClauseBuilder<QueryType, Parent>> startParenthesizedGroup() {

@@ -3,15 +3,20 @@ package com.dfaris.query.construction.where;
 import com.dfaris.query.construction.Query;
 import com.dfaris.query.construction.structure.predicate.Predicate;
 
-public abstract class WhereClause extends Predicate {
+public class WhereClause extends Predicate {
 
-	public WhereClause(String left, String operator, String right) {
-		super(left, operator, right);
+	private Predicate p;
+
+	public WhereClause(String col, String op, String val) {
+		super(col, op, val);
 	}
 
-	public WhereClause(Predicate p) {
+	private WhereClause(Predicate p) {
 		super(p);
+		this.p = p;
 	}
+
+	static WhereClause wrap(Predicate p) { return new WhereClause(p); }
 
 	public static <QueryType extends Query, Parent extends WhereParent<QueryType>> DefaultWhereClauseBuilder<QueryType, Parent> where(Parent parent) {
 		return new DefaultWhereClauseBuilder<>(parent);
@@ -20,6 +25,12 @@ public abstract class WhereClause extends Predicate {
 	@Override
 	public final String getClauseStarter() {
 		return "WHERE ";
+	}
+
+	@Override
+	public String toString() {
+		if(p != null) return p.toString();
+		return super.toString();
 	}
 
 }

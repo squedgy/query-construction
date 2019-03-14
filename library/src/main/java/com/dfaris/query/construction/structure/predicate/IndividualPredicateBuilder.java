@@ -1,8 +1,6 @@
 package com.dfaris.query.construction.structure.predicate;
 
 import com.dfaris.query.construction.ValueConverters;
-import com.dfaris.query.construction.where.IndividualWhereClause;
-import com.dfaris.query.construction.where.WhereClause;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,7 +10,7 @@ import java.util.stream.Collectors;
 
 import static com.dfaris.query.construction.ValueConverters.getBindingValueOf;
 
-public abstract class IndividualPredicateBuilder<ThisBuilderType extends IndividualPredicateBuilder, ParenReturn>  {
+public abstract class IndividualPredicateBuilder<ThisBuilderType extends IndividualPredicateBuilder, ClauseType extends Predicate>  {
 
 	protected String column;
 	protected String operator;
@@ -90,14 +88,18 @@ public abstract class IndividualPredicateBuilder<ThisBuilderType extends Individ
 	}
 
 	public final ThisBuilderType isTrue() {
-		this.operator = "<>";
-		this.constants = Collections.singletonList("0");
+		tf("<>");
 		return refe;
 	}
 
+	private void tf(String op) {
+		column = "CAST(" + column + " AS INTEGER)";
+		operator = op;
+		constants = Collections.singletonList("0");
+	}
+
 	public final ThisBuilderType isFalse() {
-		this.operator = "=";
-		this.constants = Collections.singletonList("0");
+		tf("=");
 		return refe;
 	}
 
@@ -150,6 +152,6 @@ public abstract class IndividualPredicateBuilder<ThisBuilderType extends Individ
 		return ValueConverters.getSqlValueOf(o);
 	}
 
-	protected abstract Predicate buildIndividualClause();
+	protected abstract ClauseType buildIndividualClause();
 
 }
