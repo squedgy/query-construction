@@ -20,7 +20,12 @@ public abstract class HavingClauseBuilder<Parent extends HavingParent,
     protected HavingClause buildCompoundClause() throws IllegalStateException{
         HavingClause clause;
         if(!canBuildCompoundClause()) {
-            clause = buildIndividualClause();
+            try {
+                clause = buildIndividualClause();
+            } catch (IllegalStateException e) {
+                if(a != null) clause = a;
+                else throw e;
+            }
         } else clause = new HavingClause(a.toString(), andOr, buildIndividualClause().toString());
         clear();
         return clause;

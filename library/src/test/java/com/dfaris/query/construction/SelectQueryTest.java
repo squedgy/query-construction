@@ -220,6 +220,23 @@ public class SelectQueryTest {
 		runQuery(query);
 	}
 
+	@Test
+	public void parenedHaving() {
+
+		SelectQuery query = select("bool, COUNT(*) as amount")
+				.from("test")
+				.groupBy("bool")
+				.having()
+					.startParenthesizedGroup()
+						.column("COUNT(*)").notEqualTo(2)
+						.and()
+						.column("COUNT(*)").equalTo(1)
+					.endParenthesizedGroup()
+				.build();
+
+		runQuery(query);
+	}
+
 	private void runBoundQuery(Query query, Map<String,Object> binds) {
 		log.info(query.toString());
 		jdbi.withHandle(handle -> {

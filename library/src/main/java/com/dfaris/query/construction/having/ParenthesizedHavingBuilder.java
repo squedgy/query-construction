@@ -1,6 +1,9 @@
 package com.dfaris.query.construction.having;
 
 import com.dfaris.query.construction.structure.predicate.IndividualPredicateBuilder;
+import com.dfaris.query.construction.structure.predicate.ParenedPredicate;
+
+import static com.dfaris.query.construction.having.HavingClause.wrap;
 
 public class ParenthesizedHavingBuilder<Parent extends HavingParent>
 		extends HavingClauseBuilder<Parent, ParenthesizedHavingBuilder<Parent>, ParenthesizedHavingBuilder<ParenthesizedHavingBuilder<Parent>>> {
@@ -17,7 +20,7 @@ public class ParenthesizedHavingBuilder<Parent extends HavingParent>
 	}
 
 	public Parent endParenthesizedGroup() {
-		parent.setPredicate(buildCompoundClause());
+		parent.setPredicate(wrap(new ParenedPredicate(buildCompoundClause())));
 		return parent;
 	}
 

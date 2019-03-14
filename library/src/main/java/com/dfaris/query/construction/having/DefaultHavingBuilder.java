@@ -13,12 +13,6 @@ public class DefaultHavingBuilder
     public DefaultHavingBuilder(SelectQuery.SelectQueryBuilder parent) { this(parent, null, null); }
 
     @Override
-    public SelectQuery build() {
-        parent.setPredicate(buildCompoundClause());
-        return parent.build();
-    }
-
-    @Override
     public ParenthesizedHavingBuilder<DefaultHavingBuilder> startParenthesizedGroup() {
         return new ParenthesizedHavingBuilder<>(this);
     }
