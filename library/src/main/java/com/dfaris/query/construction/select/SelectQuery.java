@@ -11,6 +11,8 @@ import com.dfaris.query.construction.group.GroupByParent;
 import com.dfaris.query.construction.having.DefaultHavingBuilder;
 import com.dfaris.query.construction.having.HavingClause;
 import com.dfaris.query.construction.having.HavingParent;
+import com.dfaris.query.construction.order.OrderByBuilder;
+import com.dfaris.query.construction.order.OrderByClause;
 import com.dfaris.query.construction.structure.predicate.Predicate;
 import com.dfaris.query.construction.structure.predicate.PredicateParent;
 import com.dfaris.query.construction.where.*;
@@ -32,13 +34,15 @@ public class SelectQuery extends Query {
 				FromClause from,
 				Optional<Predicate> where,
 				Optional<GroupByClause> groupBy,
-				Optional<Predicate> having) {
+				Optional<Predicate> having,
+				Optional<OrderByClause> orderBy) {
 		this.columns = columns;
 		this.from = from;
 		this.clauses = Arrays.asList(
 			where,
 			groupBy,
-			having
+			having,
+			orderBy
 		);
 	}
 
@@ -75,6 +79,7 @@ public class SelectQuery extends Query {
 		protected Predicate where;
 		protected GroupByClause groupBy;
 		protected Predicate having;
+		protected OrderByClause orderBy;
 
 		private SelectQueryBuilder(String[] columns) {
 			this.columns = columns;
@@ -86,6 +91,7 @@ public class SelectQuery extends Query {
 			this.where = builder.where;
 			this.groupBy = builder.groupBy;
 			this.having = builder.having;
+			this.orderBy = builder.orderBy;
 		}
 
 		public FromBuilder from() {
@@ -108,11 +114,11 @@ public class SelectQuery extends Query {
 			return new GroupByBuilder(this, columns);
 		}
 
-		public GroupByBuilder groupBy() {
-			return new GroupByBuilder(this, null);
-		}
-
 		public DefaultHavingBuilder having() { return HavingClause.having(this); }
+
+		public OrderByBuilder orderBy(String... columns) {
+			return new OrderByBuilder(this, columns);
+		}
 
 		@Override
 		public SelectQuery build() {
@@ -121,7 +127,8 @@ public class SelectQuery extends Query {
 			log.debug("where: " + where);
 			log.debug("group: " + groupBy);
 			log.debug("having: " + having);
-			return new SelectQuery(columns, from, Optional.ofNullable(where), Optional.ofNullable(groupBy), Optional.ofNullable(having));
+			log.debug("order: " + orderBy);
+			return new SelectQuery(columns, from, Optional.ofNullable(where), Optional.ofNullable(groupBy), Optional.ofNullable(having), Optional.ofNullable(orderBy));
 		}
 
 		@Override
@@ -138,6 +145,10 @@ public class SelectQuery extends Query {
 		@Override
 		public void setGroupBy(GroupByClause columns) {
 			this.groupBy = columns;
+		}
+
+		public void setOrderBy(OrderByClause orderBy) {
+			this.orderBy = orderBy;
 		}
 
 	}

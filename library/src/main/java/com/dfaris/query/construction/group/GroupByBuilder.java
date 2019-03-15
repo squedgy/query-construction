@@ -2,7 +2,6 @@ package com.dfaris.query.construction.group;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 import com.dfaris.query.construction.select.SelectQuery;
 import com.dfaris.query.construction.select.SelectQuery.SelectQueryBuilder;

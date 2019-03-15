@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -235,6 +236,54 @@ public class SelectQueryTest {
 				.build();
 
 		runQuery(query);
+	}
+
+	@Test
+	public void orderBy() {
+		SelectQuery query = select("*")
+				.from("test", "t")
+				.orderBy("shortName", "bool")
+				.build();
+
+		runQuery(query);
+	}
+
+	@Test
+	public void orderBy2() {
+		SelectQuery query = select("*")
+				.from("test", "t")
+				.orderBy("1", "2")
+				.build();
+
+		runQuery(query);
+	}
+
+
+
+	@Test
+	public void bigKahuna() {
+		SelectQuery query = select("textValue", "booleanValue", "COUNT(*)")
+				.from("aTable", "t")
+				.where()
+					.column("intValue").greaterThan(9999)
+					.and()
+					.binding()
+					.startParenthesizedGroup()
+						.column("timestampValue").greaterThan("time")
+					.endParenthesizedGroup()
+				.continueBuilding()
+				.groupBy("textValue", "booleanValue")
+				.having()
+					.column("COUNT(*)").greaterThanOrEqualTo(2)
+				.continueBuilding()
+				.orderBy("booleanValue")
+				.build();
+
+		Map<String,Object> binds = new HashMap<>();
+
+		binds.put("time", LocalDateTime.of(2000, 1, 1, 0, 0));
+
+		runBoundQuery(query, binds);
 	}
 
 	private void runBoundQuery(Query query, Map<String,Object> binds) {
