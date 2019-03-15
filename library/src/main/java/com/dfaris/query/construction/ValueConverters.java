@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class ValueConverters {
@@ -45,6 +46,12 @@ public abstract class ValueConverters {
 		StringBuilder builder = new StringBuilder();
 		for(int f = 0; f < i; f++) builder.append("?,");
 		return builder.deleteCharAt(builder.length()-1).toString();
+	}
+
+	public static List<String> questionMarks(int i) {
+		List<String> qms = new LinkedList<String>();
+		for(int f = 0; f < i; f++ ) qms.add("?");
+		return qms;
 	}
 
 	public static String getBindingValueOf(Object e) {
