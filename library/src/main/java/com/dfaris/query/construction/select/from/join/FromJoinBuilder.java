@@ -2,10 +2,11 @@ package com.dfaris.query.construction.select.from.join;
 
 import com.dfaris.query.construction.select.from.FromBuilder;
 import com.dfaris.query.construction.select.SelectQuery;
+import com.dfaris.query.construction.select.from.FromClause;
 
 import static com.dfaris.query.construction.select.from.join.JoinClause.Type.*;
 
-public class FromJoinBuilder extends FromBuilder {
+public class FromJoinBuilder {
 
 	protected String table,
 			alias,
@@ -13,10 +14,10 @@ public class FromJoinBuilder extends FromBuilder {
 			otherTableAlias,
 			onColumn;
 	protected JoinClause.Type type;
+	protected FromBuilder parent;
 
 	public FromJoinBuilder(FromBuilder builder, JoinClause.Type type, String table, String alias){
-		super(builder);
-		setFrom(null);
+		this.parent = builder;
 		this.type = type;
 		this.table(table, alias);
 	}
@@ -45,7 +46,7 @@ public class FromJoinBuilder extends FromBuilder {
 	public FromJoinBuilder alias(String alias) {
 		this.alias = alias;
 		if(type == CROSS) {
-			addJoin(buildClause());
+			parent.addJoin(buildClause());
 			this.table = null;
 			this.alias = null;
 		}
@@ -59,8 +60,8 @@ public class FromJoinBuilder extends FromBuilder {
 		this.tableColumn = column;
 		this.otherTableAlias = otherTableAlias;
 		this.onColumn = onColumn;
-		addJoin(buildClause());
-		return new FromBuilder(this);
+		parent.addJoin(buildClause());
+		return parent;
 	}
 
 	public FromJoinBuilder reset(JoinClause.Type type) {
@@ -77,8 +78,8 @@ public class FromJoinBuilder extends FromBuilder {
 		return type.build(table, alias, tableColumn, otherTableAlias, onColumn);
 	}
 
-	public SelectQuery build() {
-		addJoin(buildClause());
-		return super.build();
+	public FromClause build() {
+		parent.addJoin(buildClause());
+		return parent.build();
 	}
 }

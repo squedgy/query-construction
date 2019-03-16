@@ -4,5 +4,4 @@ import com.dfaris.query.construction.select.SelectQuery;
 import com.dfaris.query.construction.predicate.Predicate;
 import com.dfaris.query.construction.predicate.PredicateParent;
 
-public interface HavingParent extends PredicateParent<SelectQuery, Predicate> {
-}
+public interface HavingParent extends PredicateParent<HavingClause> { }

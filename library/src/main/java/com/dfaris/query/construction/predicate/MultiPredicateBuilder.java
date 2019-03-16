@@ -23,20 +23,18 @@ public abstract class MultiPredicateBuilder<This extends MultiPredicateBuilder,
 		this.constants = new LinkedList<>();
 	}
 
-	protected final boolean canBuildCompoundClause() {
-		return super.canBuildIndividualClause() && andOr != null && a != null;
+	protected boolean canBuildCompound() {
+		return super.canBuild() && andOr != null && a != null;
 	}
 
-	protected abstract PredicateType buildCompoundClause();
-
 	public This and() {
-		a = buildCompoundClause();
+		a = build();
 		this.andOr = "and";
 		return refe;
 	}
 
 	public This or() {
-		a = buildCompoundClause();
+		a = build();
 		this.andOr = "or";
 		return refe;
 	}

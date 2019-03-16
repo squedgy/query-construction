@@ -3,14 +3,14 @@ package com.dfaris.query.construction.select.having;
 import com.dfaris.query.construction.select.SelectQuery;
 
 public class DefaultHavingBuilder
-        extends HavingClauseBuilder<SelectQuery.SelectQueryBuilder, DefaultHavingBuilder, ParenthesizedHavingBuilder<DefaultHavingBuilder>> {
+        extends HavingClauseBuilder<DefaultHavingBuilder, ParenthesizedHavingBuilder<DefaultHavingBuilder>> {
 
-    public DefaultHavingBuilder(SelectQuery.SelectQueryBuilder parent, HavingClause a, String andOr) {
-        super(parent, a, andOr);
+    public DefaultHavingBuilder(HavingClause a, String andOr) {
+        super(a, andOr);
         this.refe = this;
     }
 
-    public DefaultHavingBuilder(SelectQuery.SelectQueryBuilder parent) { this(parent, null, null); }
+    public DefaultHavingBuilder() { this(null, null); }
 
     @Override
     public ParenthesizedHavingBuilder<DefaultHavingBuilder> startParenthesizedGroup() {

@@ -63,12 +63,15 @@ public class SelectQueryTest {
 	@Test
 	public void likeATestOrSomething() {
 		SelectQuery query = select("aDateTime", "aDate", "aTime")
-				.from("anotherTest")
-				.innerJoin("test").alias("t").on("testId", "anotherTest", "anotherTestId")
-				.where()
-					.column("t.testId").greaterThan(1)
-					.and()
-					.column("t.bool").notNull()
+				.from("anotherTest", builder ->builder
+						.innerJoin("test").alias("t").on("testId", "anotherTest", "anotherTestId")
+						.build()
+				)
+				.where(builder -> builder.column("t.testId").greaterThan(1)
+						.and()
+						.column("t.bool").notNull()
+						.build()
+				)
 				.build();
 
 		runQuery(query);
@@ -78,18 +81,19 @@ public class SelectQueryTest {
 	public void parenthesis() {
 		SelectQuery query = select("name", "bool", "shortName")
 				.from("test")
-				.where()
-					.startParenthesizedGroup()
-						.column("testId").equalTo(1)
+				.where(builder -> builder.startParenthesizedGroup()
+							.column("testId").equalTo(1)
+							.or()
+							.column("bool").isTrue()
+						.endParenthesizedGroup()
 						.or()
-						.column("bool").isTrue()
-					.endParenthesizedGroup()
-					.or()
-					.startParenthesizedGroup()
-						.column("name").equalTo("david")
-						.and()
-						.column("bool").isFalse()
-					.endParenthesizedGroup()
+						.startParenthesizedGroup()
+							.column("name").equalTo("david")
+							.and()
+							.column("bool").isFalse()
+						.endParenthesizedGroup()
+						.build()
+				)
 				.build();
 
 		runQuery(query);
@@ -99,16 +103,17 @@ public class SelectQueryTest {
 	public void mixedParenthesis() {
 		SelectQuery query = select("aTableId", "intValue", "textValue")
 				.from("aTable")
-				.where()
-					.startParenthesizedGroup()
-						.column("aTableId").equalTo(2)
+				.where(builder -> builder .startParenthesizedGroup()
+							.column("aTableId").equalTo(2)
+							.and()
+							.column("intValue").in(22)
+						.endParenthesizedGroup()
+						.or()
+						.column("textValue").equalTo("different text")
 						.and()
-						.column("intValue").in(22)
-					.endParenthesizedGroup()
-					.or()
-					.column("textValue").equalTo("different text")
-					.and()
-					.column("aTableId").greaterThan(0)
+						.column("aTableId").greaterThan(0)
+						.build()
+				)
 				.build();
 
 		runQuery(query);
@@ -118,16 +123,17 @@ public class SelectQueryTest {
 	public void compoundParenthesis() {
 		SelectQuery query = select("*")
 				.from("aTable")
-				.where()
-				.startParenthesizedGroup()
-					.startParenthesizedGroup()
-						.column("aTableId")
-						.greaterThan(0)
-					.endParenthesizedGroup()
-					.or()
-					.column("booleanValue")
-					.isTrue()
-				.endParenthesizedGroup()
+				.where(builder -> builder.startParenthesizedGroup()
+							.startParenthesizedGroup()
+								.column("aTableId")
+								.greaterThan(0)
+							.endParenthesizedGroup()
+							.or()
+							.column("booleanValue")
+							.isTrue()
+						.endParenthesizedGroup()
+						.build()
+				)
 				.build();
 
 		runQuery(query);
@@ -136,11 +142,10 @@ public class SelectQueryTest {
 	@Test
 	public void join() {
 		SelectQuery query = select("test.testId", "anotherTest.anotherTestId", "aTable.aTableId")
-				.from("test")
-					.join("anotherTest")
-						.on("testId", "test", "testId")
-					.fullJoin("aTable")
-						.on("aTableId", "test", "testId")
+				.from("test", builder -> builder.join("anotherTest").on("testId", "test", "testId")
+						.fullJoin("aTable").on("aTableId", "test", "testId")
+						.build()
+				)
 				.build();
 		runQuery(query);
 	}
@@ -148,8 +153,7 @@ public class SelectQueryTest {
 	@Test
 	public void anotherJoin() {
 		SelectQuery query = select("*")
-				.from("test")
-					.crossJoin("aTable")
+				.from("test", builder -> builder.crossJoin("aTable").build())
 				.build();
 
 		runQuery(query);
@@ -159,10 +163,11 @@ public class SelectQueryTest {
 	public void bindableTest() {
 		SelectQuery query = select("*")
 				.from("test")
-				.where()
-					.binding()
-					.column("testId")
-					.equalTo("testId")
+				.where(builder -> builder.binding()
+						.column("testId")
+						.equalTo("testId")
+						.build()
+				)
 				.build();
 		Map<String,Object> binds = new HashMap<>();
 		binds.put("testId", 1);
@@ -173,16 +178,17 @@ public class SelectQueryTest {
 	public void parenthesizedMultiBindableTest() {
 		SelectQuery query = select("*")
 				.from("test")
-				.where()
-					.binding()
-					.startParenthesizedGroup()
-						.column("testId")
-						.in("testIds")
-						.and()
-						.literal()
-						.column("name")
-						.like("%a%")
-					.endParenthesizedGroup()
+				.where(builder -> builder.binding()
+						.startParenthesizedGroup()
+							.column("testId")
+							.in("testIds")
+							.and()
+							.literal()
+							.column("name")
+							.like("%a%")
+						.endParenthesizedGroup()
+						.build()
+				)
 				.build();
 
 		Map<String, Object> binds = new HashMap<>();
@@ -199,9 +205,7 @@ public class SelectQueryTest {
 	public void groupBy() {
 		SelectQuery query = select("t.bool", "COUNT(t.name) as names")
 				.from("test", "t")
-				.where()
-					.column("testId").greaterThan(1)
-					.continueBuilding()
+				.where(builder -> builder.column("testId").greaterThan(1).build())
 				.groupBy("bool")
 				.build();
 
@@ -214,8 +218,7 @@ public class SelectQueryTest {
 		SelectQuery query = select("t.bool", "COUNT(t.name) as names")
 				.from("test", "t")
 				.groupBy("t.bool")
-				.having()
-					.column("COUNT(t.name)").greaterThan(2)
+				.having(builder -> builder.column("COUNT(t.name)").greaterThan(2).build())
 				.build();
 
 		runQuery(query);
@@ -227,12 +230,13 @@ public class SelectQueryTest {
 		SelectQuery query = select("bool, COUNT(*) as amount")
 				.from("test")
 				.groupBy("bool")
-				.having()
-					.startParenthesizedGroup()
-						.column("COUNT(*)").notEqualTo(2)
-						.and()
-						.column("COUNT(*)").equalTo(1)
-					.endParenthesizedGroup()
+				.having(builder -> builder.startParenthesizedGroup()
+							.column("COUNT(*)").notEqualTo(2)
+							.and()
+							.column("COUNT(*)").equalTo(1)
+						.endParenthesizedGroup()
+						.build()
+				)
 				.build();
 
 		runQuery(query);
@@ -264,18 +268,16 @@ public class SelectQueryTest {
 	public void bigKahuna() {
 		SelectQuery query = select("textValue", "booleanValue", "COUNT(*)")
 				.from("aTable", "t")
-				.where()
-					.column("intValue").greaterThan(9999)
-					.and()
-					.binding()
-					.startParenthesizedGroup()
-						.column("timestampValue").greaterThan("time")
-					.endParenthesizedGroup()
-				.continueBuilding()
+				.where(builder -> builder .column("intValue").greaterThan(9999)
+						.and()
+						.binding()
+						.startParenthesizedGroup()
+							.column("timestampValue").greaterThan("time")
+						.endParenthesizedGroup()
+						.build()
+				)
 				.groupBy("textValue", "booleanValue")
-				.having()
-					.column("COUNT(*)").greaterThanOrEqualTo(2)
-				.continueBuilding()
+				.having(builder -> builder.column("COUNT(*)").greaterThanOrEqualTo(2).build())
 				.orderBy("booleanValue")
 				.build();
 

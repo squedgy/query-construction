@@ -4,25 +4,21 @@ import com.dfaris.query.construction.Clause;
 import com.dfaris.query.construction.Query;
 import com.dfaris.query.construction.predicate.where.DefaultWhereClauseBuilder;
 import com.dfaris.query.construction.predicate.where.WhereClause;
-import com.dfaris.query.construction.predicate.where.WhereParent;
 import com.dfaris.query.construction.select.from.FromBuilder;
 import com.dfaris.query.construction.select.from.FromClause;
-import com.dfaris.query.construction.select.from.FromParent;
-import com.dfaris.query.construction.select.group.GroupByBuilder;
 import com.dfaris.query.construction.select.group.GroupByClause;
-import com.dfaris.query.construction.select.group.GroupByParent;
 import com.dfaris.query.construction.select.having.DefaultHavingBuilder;
 import com.dfaris.query.construction.select.having.HavingClause;
-import com.dfaris.query.construction.select.having.HavingParent;
-import com.dfaris.query.construction.select.order.OrderByBuilder;
 import com.dfaris.query.construction.select.order.OrderByClause;
 import com.dfaris.query.construction.predicate.Predicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 public class SelectQuery extends Query {
 
@@ -73,13 +69,13 @@ public class SelectQuery extends Query {
 		return new SelectQueryBuilder(columns);
 	}
 
-	public static class SelectQueryBuilder implements FromParent, WhereParent<SelectQuery>, GroupByParent, HavingParent {
+	public static class SelectQueryBuilder {
 
 		protected final String[] columns;
 		protected FromClause from;
-		protected Predicate where;
+		protected WhereClause where;
 		protected GroupByClause groupBy;
-		protected Predicate having;
+		protected HavingClause having;
 		protected OrderByClause orderBy;
 
 		private SelectQueryBuilder(String[] columns) {
@@ -95,33 +91,44 @@ public class SelectQuery extends Query {
 			this.orderBy = builder.orderBy;
 		}
 
-		public FromBuilder from() {
-			return new FromBuilder(this);
+		public SelectQueryBuilder from(String table, Function<FromBuilder, FromClause> callback) {
+			return from(table, table, callback);
 		}
 
-		public FromBuilder from(String table) {
-			return new FromBuilder(this, table);
+		public SelectQueryBuilder from(String table, String alias, Function<FromBuilder, FromClause> callback) {
+			from = callback.apply(new FromBuilder(table, alias));
+			return this;
 		}
 
-		public FromBuilder from(String table, String alias) {
-			return new FromBuilder(this, table, alias);
+		public SelectQueryBuilder from(String table, String alias) {
+			from = new FromBuilder(table,alias).build();
+			return this;
 		}
 
-		public DefaultWhereClauseBuilder<SelectQuery, SelectQueryBuilder> where() {
-			return WhereClause.where(this);
+		public SelectQueryBuilder from(String table) {
+			return from(table, table);
 		}
 
-		public GroupByBuilder groupBy(String... columns) {
-			return new GroupByBuilder(this, columns);
+		public SelectQueryBuilder where(Function<DefaultWhereClauseBuilder, WhereClause> callback) {
+			where = callback.apply(WhereClause.where());
+			return this;
 		}
 
-		public DefaultHavingBuilder having() { return HavingClause.having(this); }
-
-		public OrderByBuilder orderBy(String... columns) {
-			return new OrderByBuilder(this, columns);
+		public SelectQueryBuilder groupBy(String... columns) {
+			groupBy = new GroupByClause(Arrays.asList(columns));
+			return this;
 		}
 
-		@Override
+		public SelectQueryBuilder having(Function<DefaultHavingBuilder, HavingClause> callback) {
+			having = callback.apply(HavingClause.having());
+			return this;
+		}
+
+		public SelectQueryBuilder orderBy(String... columns) {
+			orderBy = new OrderByClause(new LinkedList<>(Arrays.asList(columns)));
+			return this;
+		}
+
 		public SelectQuery build() {
 			log.debug("columns: " + Arrays.toString(columns));
 			log.debug("from: " + from);
@@ -130,26 +137,6 @@ public class SelectQuery extends Query {
 			log.debug("having: " + having);
 			log.debug("order: " + orderBy);
 			return new SelectQuery(columns, from, Optional.ofNullable(where), Optional.ofNullable(groupBy), Optional.ofNullable(having), Optional.ofNullable(orderBy));
-		}
-
-		@Override
-		public void setFrom(FromClause from) {
-			this.from = from;
-		}
-
-		@Override
-		public void setPredicate(Predicate clause) {
-			if(clause instanceof WhereClause) this.where = clause;
-			if(clause instanceof HavingClause) this.having = clause;
-		}
-
-		@Override
-		public void setGroupBy(GroupByClause columns) {
-			this.groupBy = columns;
-		}
-
-		public void setOrderBy(OrderByClause orderBy) {
-			this.orderBy = orderBy;
 		}
 
 	}

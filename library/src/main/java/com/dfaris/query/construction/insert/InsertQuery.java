@@ -3,11 +3,14 @@ package com.dfaris.query.construction.insert;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import com.dfaris.query.construction.Clause;
 import com.dfaris.query.construction.Query;
 import com.dfaris.query.construction.insert.values.ValuesBuilder;
 import com.dfaris.query.construction.predicate.Predicate;
+import com.dfaris.query.construction.predicate.where.DefaultWhereClauseBuilder;
+import com.dfaris.query.construction.predicate.where.WhereClause;
 import com.dfaris.query.construction.predicate.where.WhereParent;
 
 public class InsertQuery extends Query {
@@ -42,10 +45,11 @@ public class InsertQuery extends Query {
         return query.toString();
     }
 
-    public static class InsertQueryBuilder implements WhereParent<InsertQuery> {
+    public static class InsertQueryBuilder {
 
         private final String table;
         protected final String[] columns;
+        protected List<Object> values;
         private Predicate where;
 
         public static InsertQueryBuilder insertInto(String table, String... columns) {
@@ -57,34 +61,16 @@ public class InsertQuery extends Query {
             this.columns = columns;
         }
 
-        protected InsertQueryBuilder(InsertQueryBuilder builder) {
-            this.columns = builder.columns;
-            this.table = builder.table;
-            this.where = builder.where;
+        public InsertQueryBuilder values(Function<ValuesBuilder, List<Object>> callback) {
+            values = callback.apply(new ValuesBuilder(table, columns));
+            return this;
         }
 
-        public ValuesBuilder values(Object... values) {
-            if(values.length % columns.length != 0) throw new IllegalArgumentException(
-                    "The amount of values must be evenly divisible by the number of columns. " +
-                            "Received: " + values.length + ", with " + columns.length + "columns!"
-            );
-            return new ValuesBuilder(this, values);
+        public InsertQueryBuilder where(Function<DefaultWhereClauseBuilder, WhereClause> callback) {
+            where = callback.apply(WhereClause.where());
+            return this;
         }
 
-        public ValuesBuilder values(int values) {
-            if(values % columns.length != 0) throw new IllegalArgumentException(
-                    "values must be evenly divisible by the number of columns! " +
-                            "Requested: " + values + " question marks with " + columns.length + "columns"
-            );
-            return new ValuesBuilder(this, values);
-        }
-
-        @Override
-        public void setPredicate(Predicate predicate) {
-            this.where = predicate;
-        }
-
-        @Override
         public InsertQuery build() {
             return new InsertQuery(table, columns, Optional.ofNullable(where));
         }

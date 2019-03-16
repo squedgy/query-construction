@@ -141,7 +141,7 @@ public abstract class IndividualPredicateBuilder<ThisBuilderType extends Individ
 		return refe;
 	}
 
-	protected final boolean canBuildIndividualClause() {
+	protected boolean canBuild() {
 		return column != null && operator != null && constants.size() > 0;
 	}
 
@@ -152,6 +152,6 @@ public abstract class IndividualPredicateBuilder<ThisBuilderType extends Individ
 		return ValueConverters.getSqlValueOf(o);
 	}
 
-	protected abstract ClauseType buildIndividualClause();
+	public abstract ClauseType build();
 
 }

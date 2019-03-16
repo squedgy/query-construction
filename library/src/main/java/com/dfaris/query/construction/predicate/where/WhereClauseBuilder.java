@@ -4,27 +4,21 @@ import com.dfaris.query.construction.Query;
 import com.dfaris.query.construction.predicate.MultiPredicateBuilder;
 import com.dfaris.query.construction.predicate.Predicate;
 
-public abstract class WhereClauseBuilder<QueryType extends Query,
-											Parent extends WhereParent<QueryType>,
-											This extends WhereClauseBuilder,
+public abstract class WhereClauseBuilder<This extends WhereClauseBuilder,
 											StartParenReturn>
-		extends MultiPredicateBuilder<This, Predicate,StartParenReturn>
-		implements WhereParent<QueryType> {
+		extends MultiPredicateBuilder<This, WhereClause, StartParenReturn>
+		implements WhereParent {
 
-	protected final Parent parent;
-
-	WhereClauseBuilder(Parent parent, WhereClause a, String andOr) {
+	WhereClauseBuilder(WhereClause a, String andOr) {
 		super(a, andOr);
-		this.parent = parent;
 	}
 
-	WhereClauseBuilder(Parent parent) {
-		this(parent, null, null);
+	WhereClauseBuilder() {
+		this(null, null);
 	}
 
-	@Override
-	protected Predicate buildIndividualClause() throws IllegalStateException{
-		if(canBuildIndividualClause()) return new WhereClause(column, operator, String.join(",", constants));
+	protected WhereClause buildIndividualClause() throws IllegalStateException{
+		if(canBuild()) return new WhereClause(column, operator, String.join(",", constants));
 		throw new IllegalStateException(String.format("Column, Operator, Or constants where not correctly setup for a clause.\n\tcolumn=\"%s\"\n\toperator=\"%s\"\n\tconstants=%s",
 				column,
 				operator,
@@ -33,9 +27,9 @@ public abstract class WhereClauseBuilder<QueryType extends Query,
 
 
 	@Override
-	protected Predicate buildCompoundClause() throws IllegalStateException{
-		Predicate ret;
-		if (!canBuildCompoundClause()) {
+	public WhereClause build() throws IllegalStateException{
+		WhereClause ret;
+		if (!canBuildCompound()) {
 			try {
 				ret = buildIndividualClause();
 			} catch(IllegalStateException e) {
@@ -49,24 +43,8 @@ public abstract class WhereClauseBuilder<QueryType extends Query,
 		return ret;
 	}
 
-	public Parent getParent() {
-		return parent;
-	}
-
-	public Parent continueBuilding() throws IllegalStateException {
-		if(a != null) parent.setPredicate(a);
-		return parent;
-	}
-
 	@Override
-	public QueryType build() {
-		parent.setPredicate(buildCompoundClause());
-		return parent.build();
-	}
-
-
-	@Override
-	public void setPredicate(Predicate predicate) throws IllegalStateException {
+	public void setPredicate(WhereClause predicate) throws IllegalStateException {
 		if(a == null ) a = predicate;
 		else if (andOr != null){
 			WhereClause temp = new WhereClause(a.toString(), andOr, predicate.toString());
@@ -75,6 +53,6 @@ public abstract class WhereClauseBuilder<QueryType extends Query,
 		} else {
 			throw new IllegalStateException("Attempted to set predicate on an existing builder without an and/or set.");
 		}
-
 	}
+
 }

@@ -9,25 +9,25 @@ import com.dfaris.query.construction.insert.InsertQuery.InsertQueryBuilder;
 import static com.dfaris.query.construction.ValueConverters.getBindingValueOf;
 import static com.dfaris.query.construction.ValueConverters.questionMarks;
 
-public class ValuesBuilder extends InsertQueryBuilder {
+public class ValuesBuilder {
 
     private List<Object> constants = new LinkedList<>();
     private boolean binding = false;
+    private final String table;
+    private final Object[] columns;
 
-    public ValuesBuilder(InsertQueryBuilder builder, Object[] values) {
-        super(builder);
-        constants.addAll(Arrays.asList(values));
-    }
-
-    public ValuesBuilder(InsertQueryBuilder builder, int questionMarks) {
-        super(builder);
-        constants.addAll(questionMarks(questionMarks));
+    public ValuesBuilder(String table, Object[] columns) {
+        this.table = table;
+        this.columns = columns;
     }
 
     public ValuesBuilder insert(Object... values) {
-        validate(values);
-        if(binding) for(Object o : values) constants.add(getBindingValueOf(o));
-        else constants.addAll(Arrays.asList(values));
+        if(binding) {
+            for(Object o : values) constants.add(getBindingValueOf(o));
+        } else {
+            validate(values);
+            constants.addAll(Arrays.asList(values));
+        }
         return this;
     }
 
@@ -47,9 +47,13 @@ public class ValuesBuilder extends InsertQueryBuilder {
         return this;
     }
 
+    public List<Object> build() {
+        return constants;
+    }
+
     private void validate(Object[] objects) {
         List<Object> objects1 = new LinkedList<>();
-        List<List> lists = new LinkedList<>();
+        List<List>   lists    = new LinkedList<>();
         int counter = 0;
         for(Object o : objects) {
             if(o instanceof List){

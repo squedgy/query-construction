@@ -18,7 +18,7 @@ public class HavingClause extends Predicate {
 
     static HavingClause wrap(Predicate p) { return new HavingClause(p); }
 
-    public static DefaultHavingBuilder having(SelectQuery.SelectQueryBuilder parent) { return new DefaultHavingBuilder(parent); }
+    public static DefaultHavingBuilder having() { return new DefaultHavingBuilder(); }
 
     @Override
     public final String getClauseStarter() {

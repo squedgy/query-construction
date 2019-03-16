@@ -1,31 +1,30 @@
 package com.dfaris.query.construction.predicate.where;
 
-import com.dfaris.query.construction.Query;
 import com.dfaris.query.construction.predicate.IndividualPredicateBuilder;
 import com.dfaris.query.construction.predicate.ParenedPredicate;
 
 import static com.dfaris.query.construction.predicate.where.WhereClause.wrap;
 
-public class ParenthesizedWhereClauseBuilder<QueryType extends Query,
-											Parent extends WhereParent<QueryType>>
-		extends WhereClauseBuilder<QueryType,
-														Parent,
-														ParenthesizedWhereClauseBuilder<QueryType, Parent>,
-														ParenthesizedWhereClauseBuilder<QueryType, ParenthesizedWhereClauseBuilder<QueryType, Parent>>> {
+public class ParenthesizedWhereClauseBuilder<Parent extends WhereParent>
+		extends WhereClauseBuilder<ParenthesizedWhereClauseBuilder<Parent>,
+									ParenthesizedWhereClauseBuilder<ParenthesizedWhereClauseBuilder<Parent>>> {
+
+	private Parent parent;
 
 	ParenthesizedWhereClauseBuilder(Parent parent) {
-		super(parent, null, null);
+		super(null, null);
 		this.refe = this;
+		this.parent = parent;
 		if(parent instanceof IndividualPredicateBuilder) binding = ((IndividualPredicateBuilder) parent).isBinding();
 	}
 
 	@Override
-	public ParenthesizedWhereClauseBuilder<QueryType, ParenthesizedWhereClauseBuilder<QueryType, Parent>> startParenthesizedGroup() {
+	public ParenthesizedWhereClauseBuilder<ParenthesizedWhereClauseBuilder<Parent>> startParenthesizedGroup() {
 		return new ParenthesizedWhereClauseBuilder<>(this);
 	}
 
 	public Parent endParenthesizedGroup() {
-		parent.setPredicate(wrap(new ParenedPredicate(buildCompoundClause())));
+		parent.setPredicate(wrap(new ParenedPredicate(build())));
 		return parent;
 	}
 

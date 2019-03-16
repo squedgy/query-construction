@@ -16,35 +16,17 @@ import static com.dfaris.query.construction.select.from.join.JoinClause.Type.LEF
 import static com.dfaris.query.construction.select.from.join.JoinClause.Type.RIGHT;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class FromBuilder extends SelectQueryBuilder {
+public class FromBuilder {
 
 	private static Logger log = getLogger(FromBuilder.class);
 
 	private String table, alias;
 	private final List<JoinClause> joins;
-	
-	public FromBuilder(SelectQueryBuilder parent, String table, String alias, List<JoinClause> clause) {
-		super(parent);
-		this.joins=clause;
-		this.table=table;
-		this.alias=alias;
-		setFrom(new FromClause(table, alias, clause));
-	}
-	
-	public FromBuilder(FromBuilder builder) {
-		this(builder, builder.table, builder.alias, builder.joins);
-	}
 
-	public FromBuilder(SelectQueryBuilder parent, String table, String alias) {
-		this(parent, table, alias, new LinkedList<>());
-	}
-
-	public FromBuilder(SelectQueryBuilder parent, String table) {
-		this(parent, table, table);
-	}
-
-	public FromBuilder(SelectQueryBuilder parent) {
-		this(parent, null);
+	public FromBuilder(String table, String alias) {
+		this.table = table;
+		this.alias = alias;
+		this.joins = new LinkedList<>();
 	}
 
 	public FromBuilder table(String table) {
@@ -119,9 +101,8 @@ public class FromBuilder extends SelectQueryBuilder {
 		this.joins.add(join);
 	}
 
-	public SelectQuery build() {
-		setFrom(new FromClause(table, alias, joins));
-		return super.build();
+	public FromClause build() {
+		return new FromClause(table, alias, joins);
 	}
 
 }

@@ -18,8 +18,8 @@ public class WhereClause extends Predicate {
 
 	static WhereClause wrap(Predicate p) { return new WhereClause(p); }
 
-	public static <QueryType extends Query, Parent extends WhereParent<QueryType>> DefaultWhereClauseBuilder<QueryType, Parent> where(Parent parent) {
-		return new DefaultWhereClauseBuilder<>(parent);
+	public static DefaultWhereClauseBuilder where() {
+		return new DefaultWhereClauseBuilder();
 	}
 
 	@Override
