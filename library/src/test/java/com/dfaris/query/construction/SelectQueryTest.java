@@ -47,7 +47,7 @@ public class SelectQueryTest {
 				)
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 	@Test
@@ -69,7 +69,7 @@ public class SelectQueryTest {
 				)
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 	@Test
@@ -89,7 +89,7 @@ public class SelectQueryTest {
 				)
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 	@Test
@@ -109,7 +109,7 @@ public class SelectQueryTest {
 				)
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 	@Test
@@ -120,7 +120,7 @@ public class SelectQueryTest {
 						.build()
 				)
 				.build();
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 	@Test
@@ -129,7 +129,7 @@ public class SelectQueryTest {
 				.from("test", builder -> builder.crossJoin("aTable").build())
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 	@Test
@@ -144,7 +144,7 @@ public class SelectQueryTest {
 				.build();
 		Map<String,Object> binds = new HashMap<>();
 		binds.put("testId", 1);
-		runBoundQuery(query, binds);
+		Helper.runQuery(query, binds);
 	}
 
 	@Test
@@ -168,7 +168,7 @@ public class SelectQueryTest {
 		binds.put("testIds", Arrays.asList(
 			1,2,3,4
 		));
-		runBoundQuery(query, binds);
+		Helper.runQuery(query, binds);
 
 		FunStuff.main(null);
 
@@ -182,7 +182,7 @@ public class SelectQueryTest {
 				.groupBy("bool")
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 
 	}
 
@@ -194,7 +194,7 @@ public class SelectQueryTest {
 				.having(builder -> builder.column("COUNT(t.name)").greaterThan(2).build())
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 	@Test
@@ -212,7 +212,7 @@ public class SelectQueryTest {
 				)
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 	@Test
@@ -222,7 +222,7 @@ public class SelectQueryTest {
 				.orderBy("shortName", "bool")
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 	@Test
@@ -232,7 +232,7 @@ public class SelectQueryTest {
 				.orderBy("1", "2")
 				.build();
 
-		runQuery(query);
+		Helper.runQuery(query);
 	}
 
 
@@ -258,28 +258,7 @@ public class SelectQueryTest {
 
 		binds.put("time", LocalDateTime.of(2000, 1, 1, 0, 0));
 
-		runBoundQuery(query, binds);
-	}
-
-	private void runBoundQuery(Query query, Map<String,Object> binds) {
-		log.info(query.toString());
-		jdbi.withHandle(handle -> {
-			org.jdbi.v3.core.statement.Query q = handle.createQuery(query.toString());
-			binds.forEach((k, bind) -> {
-				if(bind instanceof List){
-					q.bindList(k, ((List) bind).toArray());
-				} else {
-					q.bind(k, bind);
-				}
-			});
-			return q.map(new RecordMapper()).list();
-		}).forEach(r -> log.info(r.toString()));
-	}
-
-	private void runQuery(Query query) {
-		log.info(query.toString());
-		jdbi.withHandle(handle -> handle.createQuery(query.toString()).map(new RecordMapper()).list())
-				.forEach(record -> log.info(record.toString()));
+		Helper.runQuery(query, binds);
 	}
 
 }

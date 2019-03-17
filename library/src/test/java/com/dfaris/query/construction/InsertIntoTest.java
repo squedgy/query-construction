@@ -30,7 +30,7 @@ public class InsertIntoTest {
 				.values(builder -> builder.insert("Flocklin", true, "james").build())
 				.build();
 
-		runInsert(q);
+		Helper.runUpdate(q);
 	}
 
 	@Test
@@ -39,7 +39,7 @@ public class InsertIntoTest {
 				.values(builder -> builder.insert(Arrays.asList("Flocklin", true, "james")).build())
 				.build();
 
-		runInsert(q);
+		Helper.runUpdate(q);
 	}
 
 	@Test
@@ -48,7 +48,7 @@ public class InsertIntoTest {
 				.values(builder -> builder.insert("James", true, "Flocklin", Arrays.asList("Flocklin", false, "James")).build())
 				.build();
 
-		runInsert(q);
+		Helper.runUpdate(q);
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class InsertIntoTest {
 				.values(builder -> builder.binding().insert("name", "bool", "shor").build())
 				.build();
 
-		runBoundInsert(q, binds);
+		Helper.runUpdate(q, binds);
 	}
 
 	@Test
@@ -73,7 +73,7 @@ public class InsertIntoTest {
 				.values(builder -> builder.insert(3).build())
 				.build();
 
-		runBoundInsert(q, binds);
+		Helper.runUpdate(q, binds);
 	}
 
 	@Test
@@ -84,7 +84,7 @@ public class InsertIntoTest {
 				.values(builder -> builder.insert(6).build())
 				.build();
 
-		runBoundInsert(q, binds);
+		Helper.runUpdate(q, binds);
 	}
 
 	@Test
@@ -103,7 +103,7 @@ public class InsertIntoTest {
 				.values(builder -> builder.binding().insert("name", "bool", "shor", "name2", "bool2", "shor2").build())
 				.build();
 
-		runBoundInsert(q, binds);
+		Helper.runUpdate(q, binds);
 	}
 
 	@Test
@@ -121,42 +121,7 @@ public class InsertIntoTest {
 				.values(builder -> builder.binding().insert(stringBind, stringBind2).build())
 				.build();
 
-		runBoundInsert(q, binds);
-	}
-
-	private void runInsert(Query q) {
-		String query = q.toString();
-		log.info(query);
-
-		log.info("Query returned: " + jdbi.withHandle(handle -> handle.createUpdate(query).execute()));
-	}
-
-	private void runBoundInsert(Query q, Map<String,Object> binds) {
-		String query = q.toString();
-		log.info(query);
-		log.info("Binds: " + binds);
-
-		log.info("Query returned: " + jdbi.withHandle(handle -> {
-			Update u = handle.createUpdate(query);
-			binds.forEach((k,v) -> {
-				if(v instanceof List) u.bindList(k, (List)v);
-				else u.bind(k,v);
-			});
-			return u.execute();
-		}));
-
-	}
-
-	private void runBoundInsert(Query q, List<Object> binds) {
-		String query = q.toString();
-		log.info(query);
-		log.info("Binds: " + binds);
-
-		log.info("Query returned: " + jdbi.withHandle(handle -> {
-			Update u = handle.createUpdate(query);
-			for(int i = 0; i < binds.size(); i++) u.bind(i, binds.get(i));
-			return u.execute();
-		}));
+		Helper.runUpdate(q, binds);
 	}
 
 }
