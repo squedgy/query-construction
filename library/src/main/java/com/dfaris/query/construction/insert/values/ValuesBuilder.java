@@ -3,20 +3,21 @@ package com.dfaris.query.construction.insert.values;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.dfaris.query.construction.ValueConverters;
 import com.dfaris.query.construction.insert.InsertQuery.InsertQueryBuilder;
 
-import static com.dfaris.query.construction.ValueConverters.getBindingValueOf;
-import static com.dfaris.query.construction.ValueConverters.questionMarks;
+import static com.dfaris.query.construction.ValueConverters.*;
 
 public class ValuesBuilder {
 
     private List<Object> constants = new LinkedList<>();
     private boolean binding = false;
     private final String table;
-    private final Object[] columns;
+    private final String[] columns;
 
-    public ValuesBuilder(String table, Object[] columns) {
+    public ValuesBuilder(String table, String[] columns) {
         this.table = table;
         this.columns = columns;
     }
@@ -26,7 +27,10 @@ public class ValuesBuilder {
             for(Object o : values) constants.add(getBindingValueOf(o));
         } else {
             validate(values);
-            constants.addAll(Arrays.asList(values));
+            constants.addAll(Arrays.stream(values).map(i -> {
+                return i instanceof List ? ((List<?>) i).stream().map(ValueConverters::getSqlValueOf).collect(Collectors.toList())
+                        : getSqlValueOf(i );
+            }).collect(Collectors.toList()));
         }
         return this;
     }
@@ -47,8 +51,8 @@ public class ValuesBuilder {
         return this;
     }
 
-    public List<Object> build() {
-        return constants;
+    public ValuesClause build() {
+        return new ValuesClause(constants, columns.length);
     }
 
     private void validate(Object[] objects) {

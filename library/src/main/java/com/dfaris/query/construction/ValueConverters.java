@@ -60,7 +60,7 @@ public abstract class ValueConverters {
 		} else if (e instanceof List) {
 			List l = (List) e;
 			if(l.size() != 1){
-				throw new IllegalArgumentException("If trying to make a list binding, the list must contain only 1 reference element!");
+				throw new IllegalArgumentException("If trying to make a list binding, the list must contain only 1 reference String!");
 			}
 			Object o = l.get(0);
 			if(o instanceof Integer) return "(" + qm((Integer) o) + ")";

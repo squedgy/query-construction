@@ -52,7 +52,8 @@ public class SelectQuery extends Query {
 		query.append(columns[columns.length - 1])
 				.append(' ')
 				.append(from.getClauseStarter())
-				.append(from.toString());
+				.append(from.toString())
+				.append(' ');
 
 		clauses.forEach(optional -> {
 			optional.ifPresent(clause -> {

@@ -30,34 +30,7 @@ public class SelectQueryTest {
 
 	@BeforeClass
 	public static void before() throws Exception {
-		try {
-			log.info("drop db");
-			Process p = new ProcessBuilder(new String[] {"/bin/sh", "-c", "dropdb test-db"}).start();
-			p.waitFor();
-		} catch (IOException e) { }
-		Process p = new ProcessBuilder(new String[] {"/bin/sh", "-c", "createdb test-db"}).start();
-		p.waitFor();
-		if(p.exitValue() != 0) {
-			throw new RuntimeException(new BufferedReader(new InputStreamReader(p.getErrorStream())).lines().collect(Collectors.joining()));
-		}
-		SimpleDataSource source;
-
-		source = new SimpleDataSource();
-		source.setDatabaseName("test-db");
-		source.setPortNumber(5432);
-		source.setServerName("localhost");
-		source.setUser("postgres");
-		jdbi = Jdbi.create(source);
-		jdbi.useHandle(handle -> {
-			handle.createScript(IO.slurp(Thread.currentThread().getContextClassLoader().getResource("create.sql"))).execute();
-		});
-	}
-
-	@AfterClass
-	public static void after() throws Exception {
-		log.info("drop db");
-		Process p = new ProcessBuilder(new String[] {"/bin/sh", "-c", "dropdb test-db"}).start();
-		p.waitFor();
+		jdbi = Helper.init();
 	}
 
 	@Test
@@ -291,7 +264,7 @@ public class SelectQueryTest {
 	private void runBoundQuery(Query query, Map<String,Object> binds) {
 		log.info(query.toString());
 		jdbi.withHandle(handle -> {
-			org.jdbi.v3.core.statement.Query q = handle.select(query.toString());
+			org.jdbi.v3.core.statement.Query q = handle.createQuery(query.toString());
 			binds.forEach((k, bind) -> {
 				if(bind instanceof List){
 					q.bindList(k, ((List) bind).toArray());
@@ -305,7 +278,7 @@ public class SelectQueryTest {
 
 	private void runQuery(Query query) {
 		log.info(query.toString());
-		jdbi.withHandle(handle -> handle.select(query.toString()).map(new RecordMapper()).list())
+		jdbi.withHandle(handle -> handle.createQuery(query.toString()).map(new RecordMapper()).list())
 				.forEach(record -> log.info(record.toString()));
 	}
 
