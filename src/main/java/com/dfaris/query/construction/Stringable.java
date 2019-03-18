@@ -1,5 +1,8 @@
 package com.dfaris.query.construction;
 
+/**
+ * Forces a class to have a custom toString
+ */
 public abstract class Stringable {
 
 	/**

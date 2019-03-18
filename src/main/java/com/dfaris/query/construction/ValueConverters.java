@@ -9,6 +9,9 @@ import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A helper class for converting objects/values to a SQL-friendly version of themselves.
+ */
 public abstract class ValueConverters {
 
 	public static String getSqlValueOf(LocalDateTime dateTime) {
@@ -27,6 +30,11 @@ public abstract class ValueConverters {
 		return '\'' + s + '\'';
 	}
 
+	/**
+	 * An object you want to get the SQL literal version of
+	 * @param e the object to convert
+	 * @return the String to put into an SQL query String
+	 */
 	public static String getSqlValueOf(Object e) {
 
 		if (e instanceof LocalDate) {
@@ -48,12 +56,23 @@ public abstract class ValueConverters {
 		return builder.deleteCharAt(builder.length()-1).toString();
 	}
 
+	/**
+	 * get a list of question marks i marks long.<br>
+	 * you can use String.join to quickly make a comma-separated list of them.
+	 * @param i the amount of question marks
+	 * @return a List of questions marks
+	 */
 	public static List<String> questionMarks(int i) {
-		List<String> qms = new LinkedList<String>();
+		List<String> qms = new LinkedList<>();
 		for(int f = 0; f < i; f++ ) qms.add("?");
 		return qms;
 	}
 
+	/**
+	 * Convert e to a bind value if MUST be a String, List&lt;String or Integer&gt; with 1 item, or Integer
+	 * @param e the object to create a bind of
+	 * @return a string representative of the requested bind
+	 */
 	public static String getBindingValueOf(Object e) {
 		if(e instanceof String){
 			return ':' + e.toString();

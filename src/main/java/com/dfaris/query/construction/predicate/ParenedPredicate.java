@@ -1,5 +1,8 @@
 package com.dfaris.query.construction.predicate;
 
+/**
+ * A predicate wrapped in parenthesis formatted similarily to "(${predicate.toString()})".
+ */
 public class ParenedPredicate extends Predicate{
 
     private final String starter;

@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import com.dfaris.query.construction.Clause;
 import com.dfaris.query.construction.Stringable;
 
+/**
+ * An Order By clause in a SelectQuery
+ */
 public class OrderByClause extends Stringable implements Clause {
 
     private LinkedList<String> columns;
@@ -14,11 +17,19 @@ public class OrderByClause extends Stringable implements Clause {
         this.columns = columns;
     }
 
+    /**
+     * @see com.dfaris.query.construction.Clause
+     * @return the String "ORDER BY "
+     */
     @Override
     public String getClauseStarter() {
         return "ORDER BY ";
     }
 
+    /**
+     * The columns this clause holds comma-seperated
+     * @return a comma-seperated String of columns this clause holds
+     */
     @Override
     public String toString() {
         return String.join(",", columns);

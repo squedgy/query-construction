@@ -5,6 +5,10 @@ import com.dfaris.query.construction.predicate.ParenedPredicate;
 
 import static com.dfaris.query.construction.predicate.where.WhereClause.wrap;
 
+/**
+ * Deals with parenthesized groups from {@link DefaultWhereClauseBuilder}
+ * @param <Parent> What created the current instance of this builder
+ */
 public class ParenthesizedWhereClauseBuilder<Parent extends WhereParent>
 		extends WhereClauseBuilder<ParenthesizedWhereClauseBuilder<Parent>,
 									ParenthesizedWhereClauseBuilder<ParenthesizedWhereClauseBuilder<Parent>>> {

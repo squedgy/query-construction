@@ -1,8 +1,6 @@
 package com.dfaris.query.construction.select.having;
 
-import com.dfaris.query.construction.select.SelectQuery;
 import com.dfaris.query.construction.predicate.MultiPredicateBuilder;
-import com.dfaris.query.construction.predicate.Predicate;
 
 public abstract class HavingClauseBuilder<This extends HavingClauseBuilder,
                                     Paren extends HavingClauseBuilder>
